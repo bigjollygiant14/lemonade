@@ -3,7 +3,10 @@
 let gulp = require( 'gulp' ),
     bs = require( 'browser-sync' ),
     reload = bs.reload,
-    nodemon = require( 'gulp-nodemon' );
+    nodemon = require( 'gulp-nodemon' ),
+    browserify = require( 'browserify' ),
+    babelify = require( 'babelify' ),
+    source = require('vinyl-source-stream');
 
 /* Server */
 gulp.task( 'browser-sync', ['nodemon'], function() {
@@ -22,7 +25,23 @@ gulp.task( 'nodemon', function ( cb ) {
   });
 });
 
+/* Browserify */
+gulp.task( 'browserify', [], () => {
+   return browserify( {entries: ['app/main.js']} )
+    .transform( babelify )
+    // .transform(vueify)
+    .bundle()
+    .pipe( source( 'bundle.js' ) )
+    .pipe( gulp.dest( 'public/app' ) );
+});
+
+/* HTML */
+gulp.task( 'html', () => {
+  return gulp.src( 'app/index.html' )
+    .pipe( gulp.dest( 'public/app' ) );
+});
+
 /* Default */
-gulp.task( 'default', ['browser-sync'], function () {
+gulp.task( 'default', ['browserify', 'html', 'browser-sync'], function () {
   // gulp.watch(["./src/views/*.html"], reload);
 });
