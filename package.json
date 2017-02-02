@@ -1,0 +1,19 @@
+{
+  "name": "steamboat-calendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "bigjollygiant14",
+  "license": "MIT",
+  "devDependencies": {
+    "body-parser": "^1.16.0",
+    "browser-sync": "^2.18.7",
+    "express": "^4.14.1",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "mongoose": "^4.8.1"
+  }
+}
