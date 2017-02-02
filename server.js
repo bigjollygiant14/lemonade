@@ -11,7 +11,7 @@ let PORT = process.env.PORT || 5000;
 // Database
 mongoose.connect( dbConfig.url, function( err ) {
   if(err) {
-    console.log( 'connection error', err );
+    console.log( 'Error connecting to Database:', err );
   } else {
     console.log( 'Connected to Database' );
   }
