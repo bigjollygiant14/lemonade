@@ -5,6 +5,7 @@ const express = require( 'express' ),
       dbConfig = require( './db' ),
       app = express(),
       bodyParser = require( 'body-parser' );
+      // path = require( 'path' );
 
 let PORT = process.env.PORT || 5000;
 
@@ -25,6 +26,10 @@ app.use( require('./_server/routes/trips') );
 
 // Serve Content from public/app
 app.use( express.static(__dirname + '/public/app') );
+/* app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/public/app' + '/index.html'));
+  res.sendFile(path.join(__dirname + '/public/app' + '/bundle.js'));
+}); */
 
 // Start
 app.listen(PORT);

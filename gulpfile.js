@@ -10,13 +10,13 @@ let gulp = require( 'gulp' ),
     vueify = require( 'vueify' );
 
 /* Server */
-gulp.task( 'browser-sync', ['nodemon'], function() {
+gulp.task( 'browser-sync', ['nodemon'], () => {
   bs.init(null, {
     proxy: 'localhost:5000',
   });
 });
 
-gulp.task( 'nodemon', function ( cb ) {
+gulp.task( 'nodemon', ['browserify', 'html'], ( cb ) => {
   var callbackCalled = false;
   return nodemon( {script: './server.js'} ).on('start', function () {
     if ( !callbackCalled ) {
