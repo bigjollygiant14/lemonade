@@ -19,10 +19,12 @@ mongoose.connect( dbConfig.url, function( err ) {
 
 app.use( bodyParser.json() );
 
-// Routes
-app.use( require('./_server/routes/app') );
+// API Routes
 app.use( require('./_server/routes/users') );
 app.use( require('./_server/routes/trips') );
+
+// Serve Content from public/app
+app.use( express.static(__dirname + '/public/app') );
 
 // Start
 app.listen(PORT);

@@ -6,7 +6,8 @@ let gulp = require( 'gulp' ),
     nodemon = require( 'gulp-nodemon' ),
     browserify = require( 'browserify' ),
     babelify = require( 'babelify' ),
-    source = require('vinyl-source-stream');
+    source = require( 'vinyl-source-stream' ),
+    vueify = require( 'vueify' );
 
 /* Server */
 gulp.task( 'browser-sync', ['nodemon'], function() {
@@ -29,7 +30,7 @@ gulp.task( 'nodemon', function ( cb ) {
 gulp.task( 'browserify', [], () => {
    return browserify( {entries: ['app/main.js']} )
     .transform( babelify )
-    // .transform(vueify)
+    .transform( vueify )
     .bundle()
     .pipe( source( 'bundle.js' ) )
     .pipe( gulp.dest( 'public/app' ) );
