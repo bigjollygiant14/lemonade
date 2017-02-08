@@ -8,7 +8,7 @@ let TripsSchema = new mongoose.Schema({
   description: String,
   notes: String,
   title: String,
-  owner_id: Number, // ref to user.id
+  owner_id: String, // ref to user.id
   created: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
 });

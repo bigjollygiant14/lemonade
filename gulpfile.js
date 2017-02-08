@@ -26,6 +26,11 @@ gulp.task( 'nodemon', ['browserify', 'html'], ( cb ) => {
   });
 });
 
+gulp.task( 'reload', ['browserify:watch'], () => {
+  console.log('2');
+  return reload();
+});
+
 /* Browserify */
 gulp.task( 'browserify', [], () => {
    return browserify( {entries: ['app/main.js']} )
@@ -34,6 +39,11 @@ gulp.task( 'browserify', [], () => {
     .bundle()
     .pipe( source( 'bundle.js' ) )
     .pipe( gulp.dest( 'public/app' ) );
+});
+
+gulp.task('browserify:watch', ['browserify'], (done) => {
+  console.log('1')
+  done();
 });
 
 /* HTML */
@@ -45,4 +55,5 @@ gulp.task( 'html', () => {
 /* Default */
 gulp.task( 'default', ['browserify', 'html', 'browser-sync'], function () {
   // gulp.watch(["./src/views/*.html"], reload);
+  gulp.watch(['app/**/*.vue', 'app/**/*.styl', 'app/**/*.js'], ['reload']);
 });

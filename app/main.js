@@ -3,21 +3,32 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App.vue';
+import VueResource from 'vue-resource';
 
 // Router
 Vue.use(VueRouter)
 
-import Hello from './components/Hello.vue'
-// import Account from './components/Account.vue'
+import Landing from './components/Landing.vue'
+import Trips from './components/Trips.vue'
+import Admin from './components/Admin.vue'
 
 const routes = [{
   path: '/',
-  component: Hello
+  component: Landing
+}, {
+  path: '/trips',
+  component: Trips
+}, {
+  path: '/admin',
+  component: Admin
 }];
 
 const router = new VueRouter({
   routes: routes
 });
+
+// HTTP Resource
+Vue.use(VueResource)
 
 new Vue({
   router,
