@@ -4,7 +4,8 @@ import Vue from 'vue';
 
 const tripsService = {
   model: {
-    name: 'admin'
+    myTrips: [],
+    allTrips: []
   },
   methods: {
     getTrips(id) {

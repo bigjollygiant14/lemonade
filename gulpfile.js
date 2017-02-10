@@ -18,17 +18,20 @@ gulp.task( 'browser-sync', ['nodemon'], () => {
 
 gulp.task( 'nodemon', ['browserify', 'html'], ( cb ) => {
   var callbackCalled = false;
-  return nodemon( {script: './server.js'} ).on('start', function () {
+  return nodemon({
+    script: './server.js',
+    ignore: 'app'
+    // tasks: ['reload']
+  })
+  .on('start', function () {
     if ( !callbackCalled ) {
       callbackCalled = true;
       cb();
     }
+  })
+  .on('restart', () => {
+    reload();
   });
-});
-
-gulp.task( 'reload', ['browserify:watch'], () => {
-  console.log('2');
-  return reload();
 });
 
 /* Browserify */
@@ -41,9 +44,9 @@ gulp.task( 'browserify', [], () => {
     .pipe( gulp.dest( 'public/app' ) );
 });
 
-gulp.task('browserify:watch', ['browserify'], (done) => {
-  console.log('1')
+gulp.task( 'browserify:watch', ['browserify'], (done) => {
   done();
+  reload();
 });
 
 /* HTML */
@@ -54,6 +57,5 @@ gulp.task( 'html', () => {
 
 /* Default */
 gulp.task( 'default', ['browserify', 'html', 'browser-sync'], function () {
-  // gulp.watch(["./src/views/*.html"], reload);
-  gulp.watch(['app/**/*.vue', 'app/**/*.styl', 'app/**/*.js'], ['reload']);
+  gulp.watch(['app/**/*.vue', 'app/**/*.styl', 'app/**/*.js'], ['browserify:watch']);
 });

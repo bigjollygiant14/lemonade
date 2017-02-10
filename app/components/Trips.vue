@@ -73,10 +73,12 @@ export default {
   },
   created: function() {
     let vm = this;
+    // console.log('fart');
 
     tripsService.methods.getTrips( '589263e3e7e17c0bec0cfe2b' ).then(response => {
         console.log('200', response.body);
         vm.trips = response.body;
+        tripsService.model.myTrips = response.body;
       }, response => {
         console.log('err', response);
       });

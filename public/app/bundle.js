@@ -445,9 +445,11 @@ exports.default = {
   created: function created() {
     var vm = this;
 
+
     _tripsService2.default.methods.getTrips('589263e3e7e17c0bec0cfe2b').then(function (response) {
       console.log('200', response.body);
       vm.trips = response.body;
+      _tripsService2.default.model.myTrips = response.body;
     }, function (response) {
       console.log('err', response);
     });
@@ -483,7 +485,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-515b234b", __vue__options__)
   } else {
-    hotAPI.reload("data-v-515b234b", __vue__options__)
+    hotAPI.rerender("data-v-515b234b", __vue__options__)
   }
 })()}
 },{"../services/trips.service.js":11,"./Modal.vue":6,"vue":17,"vue-hot-reload-api":14,"vueify/lib/insert-css":18}],9:[function(require,module,exports){
@@ -583,7 +585,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var tripsService = {
   model: {
-    name: 'admin'
+    myTrips: [],
+    allTrips: []
   },
   methods: {
     getTrips: function getTrips(id) {
