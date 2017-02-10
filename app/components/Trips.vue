@@ -73,7 +73,6 @@ export default {
   },
   created: function() {
     let vm = this;
-    // console.log('fart');
 
     tripsService.methods.getTrips( '589263e3e7e17c0bec0cfe2b' ).then(response => {
         console.log('200', response.body);
@@ -102,7 +101,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../node_modules/jeet/styl'
+@import '../../node_modules/jeet/styl/index.styl'
 @import '../styles/vars.styl'
 
 #trips

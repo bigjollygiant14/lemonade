@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  @import '../../node_modules/jeet/styl'
+  @import '../../node_modules/jeet/styl/index.styl'
   @import '../styles/vars.styl'
 
   #navigation

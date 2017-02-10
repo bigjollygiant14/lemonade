@@ -4,10 +4,9 @@ let gulp = require( 'gulp' ),
     bs = require( 'browser-sync' ),
     reload = bs.reload,
     nodemon = require( 'gulp-nodemon' ),
-    browserify = require( 'browserify' ),
-    babelify = require( 'babelify' ),
     source = require( 'vinyl-source-stream' ),
-    vueify = require( 'vueify' );
+    path = require( 'path' ),
+    webpack = require( 'webpack' );
 
 /* Server */
 gulp.task( 'browser-sync', ['nodemon'], () => {
@@ -16,7 +15,7 @@ gulp.task( 'browser-sync', ['nodemon'], () => {
   });
 });
 
-gulp.task( 'nodemon', ['browserify', 'html'], ( cb ) => {
+gulp.task( 'nodemon', ['webpack', 'html'], ( cb ) => {
   var callbackCalled = false;
   return nodemon({
     script: './server.js',
@@ -34,17 +33,55 @@ gulp.task( 'nodemon', ['browserify', 'html'], ( cb ) => {
   });
 });
 
-/* Browserify */
-gulp.task( 'browserify', [], () => {
-   return browserify( {entries: ['app/main.js']} )
-    .transform( babelify )
-    .transform( vueify )
-    .bundle()
-    .pipe( source( 'bundle.js' ) )
-    .pipe( gulp.dest( 'public/app' ) );
+/* Web Pack */
+gulp.task( 'webpack', [], (cb) => {
+  let webpackConfig = {
+    entry: './app/main.js',
+    output: {
+      path: path.resolve(__dirname, './public/app'),
+      publicPath: '/public/app/',
+      filename: 'bundle.js'
+    },
+    module: {
+      rules: [
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader',
+          options: {
+            loaders: {
+              stylus: 'vue-style-loader!css-loader!stylus-loader'
+            }
+          }
+        },
+        {
+          test: /\.js$/,
+          loader: 'babel-loader',
+          exclude: /node_modules/
+        },
+        {
+          test: /\.styl$/,
+          loader: 'vue-style-loader!css-loader!stylus-loader',
+          exclude: /node_modules/
+        }
+      ]
+    },
+    resolve: {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        'vue$': 'vue/dist/vue.common.js'
+      }
+    }
+  };
+
+  return webpack(webpackConfig, function(err, stats) {
+    if (err) {
+      throw new gutil.PluginError('webpack:build', err);
+    }
+    cb();
+  });
 });
 
-gulp.task( 'browserify:watch', ['browserify'], (done) => {
+gulp.task( 'webpack:watch', ['webpack'], (done) => {
   done();
   reload();
 });
@@ -56,6 +93,6 @@ gulp.task( 'html', () => {
 });
 
 /* Default */
-gulp.task( 'default', ['browserify', 'html', 'browser-sync'], function () {
-  gulp.watch(['app/**/*.vue', 'app/**/*.styl', 'app/**/*.js'], ['browserify:watch']);
+gulp.task( 'default', ['webpack', 'html', 'browser-sync'], function () {
+  gulp.watch(['app/**/*.vue', 'app/**/*.styl', 'app/**/*.js'], ['webpack:watch']);
 });
