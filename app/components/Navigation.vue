@@ -105,6 +105,7 @@ export default {
     right auto
     top 0
     width 100%
+    z-index 10
 
   .nav-container
     center($container-width)
