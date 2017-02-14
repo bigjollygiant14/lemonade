@@ -32,6 +32,5 @@ module.exports = function (value, format, spacer) {
     if (i !== splitFormat.length - 1) string += spacer;
   }
 
-  // return month + spacer + day + spacer + year;
   return string;
 };

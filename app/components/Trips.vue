@@ -167,19 +167,6 @@ export default {
   }
 }
 
-function validate() {
-  /* let requiredFields = $('[data-required] input');
-  
-  for (var i = 0; i < requiredFields.length; i++) {
-    if ($(requiredFields)[i].type === 'date' && !$(requiredFields)[i].valueAsDate) {
-      console.log($(requiredFields)[i].type, $(requiredFields)[i].valueAsDate);
-      return;
-    } else if ($(requiredFields)[i].type === 'text' && !$(requiredFields)[i].value) {
-      console.log($(requiredFields)[i]);
-      return;
-    }
-  }*/
-}
 </script>
 
 <style lang="stylus" scoped>
