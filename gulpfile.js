@@ -76,6 +76,9 @@ gulp.task( 'webpack', [], (cb) => {
         $: 'jquery',
         jquery: 'jquery',
         jQuery: 'jquery'
+      }),
+      new webpack.ProvidePlugin({
+        _: 'lodash'
       })
     ]
   };

@@ -3,16 +3,7 @@
 import Vue from 'vue';
 
 const tripsService = {
-  model: {
-    myTrips: [],
-    allTrips: []
-  },
   methods: {
-    getTrips(id) {
-      let promise = id ? Vue.http.get('/api/trips/' + id) : promise = Vue.http.get('/api/trips');
-
-      return promise;
-    },
     addTrip(payload) {
       let promise = Vue.http.post('/api/trips', payload);
 
@@ -20,6 +11,16 @@ const tripsService = {
     },
     deleteTrip(id) {
       let promise = Vue.http.delete('/api/trips/' + id);
+
+      return promise;
+    },
+    getTrips(id) {
+      let promise = id ? Vue.http.get('/api/trips/' + id) : promise = Vue.http.get('/api/trips');
+
+      return promise;
+    },
+    updateTrip(id, payload) {
+      let promise = Vue.http.put('/api/trips/' + id, payload);
 
       return promise;
     }

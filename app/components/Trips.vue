@@ -9,18 +9,46 @@
     .trip-list
       .headers
         div Title
-        div Description
         div Start Date
         div End Date
         div Edit
-      .list(v-for='(trip, index) in trips')
-        div {{ trip.title || '-' }}
-        div {{ trip.description || '-' }}
-        div {{ dateFilter(trip.start_date, 'MM-DD-YYYY', '/') }}
-        div {{ dateFilter(trip.end_date, 'MM-DD-YYYY', '/') }}
-        .edit-trip
-          button Edit
-          button(class="danger", v-on:click='deleteTrip(trip._id, index)') Delete
+      .list-container
+        .list-item(v-for='(trip, index) in trips')
+          div
+            div(v-show="!trip.edit") {{ trip.title || '-' }}
+            div(v-show="trip.edit")
+              input(v-model="trip.title")
+          div 
+            div(v-show="!trip.edit") {{ dateFilter(trip.start_date, 'MM-DD-YYYY', '/') }}
+            div(v-show="trip.edit")
+              input(type='date', v-model="trip.start_date")
+          div
+            div(v-show="!trip.edit") {{ dateFilter(trip.end_date, 'MM-DD-YYYY', '/') }}
+            div(v-show="trip.edit")
+              input(type='date', v-model="trip.end_date")
+          .edit-trip
+            div(v-show="!trip.edit")
+              button(v-on:click='editTrip(trip)') Edit
+              button(class="danger", v-on:click='showDeleteModal(trip._id, index)') Delete
+            div(v-show="trip.edit")
+              button(v-on:click='editTrip(trip)') Cancel
+              button(class="danger", v-on:click='updateTrip(trip, index)') Save
+
+          .expand-details
+            a(v-show="!trip.showMore", v-on:click="moreDetails(trip)") Show More <span class="chevron-down"></span>
+            a(v-show="trip.showMore", v-on:click="moreDetails(trip)") Show Less <span class="chevron-up"></span>
+
+          .more-details(v-show="trip.showMore")
+            div
+              label Description
+              div(v-show="!trip.edit") {{ trip.description || '-' }}
+              div(v-show="trip.edit")
+                textarea(v-model="trip.description")
+            div
+              Label Notes
+              div(v-show="!trip.edit") {{ trip.notes || '-' }}
+              div(v-show="trip.edit")
+                textarea(v-model="trip.notes")
 
     Modal(v-if="show", :showModal="show", v-on:close="closeModal")
       h2(slot="header") Add a New Trip
@@ -44,6 +72,14 @@
       div(slot="footer", class="add-trip-footer")
         button(class="danger" v-on:click='closeModal') Cancel
         button(v-on:click='addTrip') Save
+
+    Modal(v-if="showDeleteModalBoolean", :showModal="showDeleteModalBoolean", v-on:close="closeModal")
+      h2(slot="header") Delete a Trip
+      div(slot="body")
+        h3 Warning! You are about to delete this trip. Are you sure you want to continue?
+      div(slot="footer", class="add-trip-footer")
+        button(v-on:click='closeModal') No, take me back. 
+        button(class="danger" v-on:click='deleteTrip') Yes, delete this trip
 </template>
 
 <script>
@@ -59,7 +95,7 @@ export default {
   methods: {
     addTrip: function() {
       let vm = this,
-          validated = vm.validate();
+          validated = vm.validate(vm.newTrip);
 
       if (validated) {
         let payload = {};
@@ -68,41 +104,99 @@ export default {
           payload[property] = vm.newTrip[property].value;
         }
 
-        // payload = JSON.parse(JSON.stringify(vm.newTrip));
         tripsService.methods.addTrip(payload).then(response => {
             console.log('200', response.body);
-            vm.trips.push(response.body)
+
+            // attach view helpers
+            response.body.edit = false;
+            response.body.showMore = false;
+
+            // update model -- only need to update root since its a shallow clone
+            vm.$root.$data.myTrips.push(response.body);
+
+            // clear form
+            vm.newTrip = _.cloneDeep(vm.newTripCopy);
           }, response => {
             console.log('err', response);
           });
 
         vm.closeModal();
       }
-
     },
     closeModal: function() {
       let vm = this;
       vm.show = false;
+      vm.showDeleteModalBoolean = false;
     },
-    deleteTrip: function(id, index) {
+    deleteTrip: function() {
       let vm = this;
 
-      tripsService.methods.deleteTrip(id).then(response => {
-          console.log('200', response.body);
-          vm.trips.splice(index, 1);
+      tripsService.methods.deleteTrip(vm.deleteTripObject.id).then(response => {
+          // update model
+          vm.$root.$data.myTrips.splice(vm.deleteTripObject.index, 1);
+
+          // close modal
+          vm.showDeleteModalBoolean = false;
+
+          // nullify temporary object
+          vm.deleteTripObject = {
+            id: null,
+            index: null
+          };
         }, response => {
           console.log('err', response);
         });
     },
-    validate: function() {
+    editTrip: function(object) {
+      object.edit = !object.edit ? true : false;
+
+      if (object.edit) object.showMore = true;
+      // object.showMore = !object.edit ? true : false;
+    },
+    moreDetails: function(object) {
+      object.showMore = !object.showMore ? true : false;
+    },
+    showDeleteModal: function(id, index) {
       let vm = this;
 
-      for (let field in vm.newTrip) {
-        if (vm.newTrip[field].value === '' && vm.newTrip[field].required === true) {
-          vm.newTrip[field].error = true;
+      vm.deleteTripObject = {
+        id: id,
+        index: index
+      };
+      vm.showDeleteModalBoolean = true;
+    },
+    updateTrip: function(object, index) {
+      let vm = this,
+          validated = vm.validate(object),
+          failCopy = _.cloneDeep(object);
+
+      if (validated) {
+        let payload = {};
+
+        // filter out view and vue applied properties
+        for (let property in object) {
+          if (property === 'title' || property === 'description' || property === 'notes' || property === 'start_date' || property === 'end_date' || property === '_id') {
+            payload[property] = object[property];
+          }
+        }
+
+        tripsService.methods.updateTrip(object._id, payload).then(response => {
+            vm.trips[index].edit = false;
+          }, response => {
+            console.log('err', response);
+            vm.trips[index] = failCopy;
+          });
+      }
+    },
+    validate: function(object) {
+      let vm = this;
+
+      for (let field in object) {
+        if (object[field].value === '' && object[field].required === true) {
+          object[field].error = true;
           return false;
-        } else if (vm.newTrip[field].error) {
-          vm.newTrip[field].error = false;
+        } else if (object[field].error) {
+          object[field].error = false;
         }
       }
 
@@ -113,19 +207,60 @@ export default {
   created: function() {
     let vm = this;
 
-    tripsService.methods.getTrips( '589263e3e7e17c0bec0cfe2b' ).then(response => {
-        console.log('200', response.body);
-        vm.trips = response.body;
-        tripsService.model.myTrips = response.body;
-      }, response => {
-        console.log('err', response);
-      });
+    if (!vm.$root.$data.myTrips.length) {
+      tripsService.methods.getTrips( '589263e3e7e17c0bec0cfe2b' ).then(response => {
+          for (let i = 0; i < response.body.length; i++) {
+            response.body[i].edit = false;
+            response.body[i].showMore = false;
+          }
+
+          vm.trips = response.body;
+          vm.$root.$data.myTrips = response.body;
+        }, response => {
+          console.log('err', response);
+        });
+    } else {
+      vm.trips = _.clone(vm.$root.$data.myTrips);
+    }
   },
   data () {
     return {
       title: 'My Trips',
       show: false,
+      showDeleteModalBoolean: false,
       newTrip: {
+        title: {
+          value: '',
+          required: true,
+          error: false
+        },
+        description: {
+          value: '',
+          required: false,
+          error: false
+        },
+        notes: {
+          value: '',
+          required: false,
+          error: false
+        },
+        start_date: {
+          value: '',
+          required: true,
+          error: false
+        },
+        end_date: {
+          value: '',
+          required: true,
+          error: false
+        },
+        owner_id: {
+          value: '589263e3e7e17c0bec0cfe2b',
+          required: false,
+          error: false
+        }
+      },
+      newTripCopy: {
         title: {
           value: '',
           required: true,
@@ -181,10 +316,29 @@ export default {
   .trip-list
     padding 15px
 
-    .headers, .list
-      div
-        column(1/5)
-        margin-bottom 5px
+    .headers, .list-item
+      > div
+        column(1/4)
+        
+        &.edit-trip
+          margin-right 0
+        
+        &.expand-details, &.more-details
+          column(1)
+          margin-bottom 5px
+
+        &.expand-details
+          text-align right
+
+          a
+            font-size $font-sml
+            &:hover
+              cursor pointer
+              text-decoration underline
+              
+        &.more-details
+          > div
+            column(1/2)
 
     .edit-trip
       button

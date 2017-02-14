@@ -31,10 +31,17 @@ router.get( '/api/trips/:id', function( req, res ) {
   });
 });
 
-router.delete( '/api/trips/:id', function( req, res ) {
-  Trips.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-    if (err) return next(err)
-    res.json(post)
+router.delete( '/api/trips/:id', function( req, res, next ) {
+  Trips.findByIdAndRemove(req.params.id, req.body, function ( err, post ) {
+    if ( err ) return next( err )
+    res.json( post )
+  });
+});
+
+router.put( '/api/trips/:id', function( req, res, next ) {
+  Trips.findByIdAndUpdate(req.params.id, req.body, function ( err, post ) {
+    if ( err ) return next( err );
+    res.json( post );
   });
 });
 

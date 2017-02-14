@@ -33,5 +33,10 @@ Vue.use(VueResource)
 new Vue({
   router,
   el: '#app',
+  data: {
+    trips: [],
+    myTrips: [],
+    currentUser: {}
+  },
   render: (h) => h(App)
 });
