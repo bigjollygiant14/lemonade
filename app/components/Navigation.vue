@@ -100,7 +100,11 @@ export default {
   #navigation
     background-color $white
     height 70px
-    position relative
+    left auto
+    position fixed
+    right auto
+    top 0
+    width 100%
 
   .nav-container
     center($container-width)

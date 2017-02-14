@@ -1,6 +1,5 @@
 <template lang="pug">
   #landing
-    h1 {{ title }}
     calendar
 </template>
 

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/public/app/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 52);
+/******/ 	return __webpack_require__(__webpack_require__.s = 53);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -195,7 +195,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(49)
+var listToStyles = __webpack_require__(50)
 
 /*
 type StyleObject = {
@@ -417,13 +417,13 @@ function applyToTag (styleElement, obj) {
 
 
 /* styles */
-__webpack_require__(46)
+__webpack_require__(47)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(17),
+  __webpack_require__(18),
   /* template */
-  __webpack_require__(38),
+  __webpack_require__(39),
   /* scopeId */
   "data-v-e15cb87c",
   /* cssModules */
@@ -9023,7 +9023,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(50)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(51)))
 
 /***/ }),
 /* 5 */
@@ -9217,13 +9217,13 @@ process.umask = function() { return 0; };
 
 
 /* styles */
-__webpack_require__(44)
+__webpack_require__(45)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(13),
+  __webpack_require__(14),
   /* template */
-  __webpack_require__(36),
+  __webpack_require__(37),
   /* scopeId */
   null,
   /* cssModules */
@@ -9255,13 +9255,13 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(48)
+__webpack_require__(49)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(14),
+  __webpack_require__(15),
   /* template */
-  __webpack_require__(40),
+  __webpack_require__(41),
   /* scopeId */
   "data-v-f590cc8c",
   /* cssModules */
@@ -9293,13 +9293,13 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(43)
+__webpack_require__(44)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(20),
+  __webpack_require__(21),
   /* template */
-  __webpack_require__(35),
+  __webpack_require__(36),
   /* scopeId */
   "data-v-6d3bbfd9",
   /* cssModules */
@@ -10404,7 +10404,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(51);
+    var client = __webpack_require__(52);
 
     return new PromiseObj(function (resolve) {
 
@@ -13151,6 +13151,51 @@ module.exports = VueRouter;
 "use strict";
 
 
+module.exports = function (value, format, spacer) {
+  var newDateString = '',
+      year = '',
+      month = '',
+      day = '',
+      date = new Date(value),
+      splitFormat = format.toLowerCase().split('-'),
+      monthsArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  format = format.toLowerCase();
+
+  // format day
+  day = date.getUTCDate();
+
+  // format month
+  month = format.indexOf('m') !== -1 && format.match(/m/gi).length === 3 ? monthsArr[date.getUTCMonth()] : date.getUTCMonth() + 1;
+
+  // format year
+  year = date.getUTCFullYear();
+  if (format.indexOf('y') !== -1 && format.match(/y/gi).length === 2) year = String(year).slice(2, 4);
+
+  // assemble string
+  var string = '';
+  for (var i = 0; i < splitFormat.length; i++) {
+    if (splitFormat[i].indexOf('m') !== -1) {
+      string += month;
+    } else if (splitFormat[i].indexOf('y') !== -1) {
+      string += year;
+    } else {
+      string += day;
+    }
+
+    if (i !== splitFormat.length - 1) string += spacer;
+  }
+
+  // return month + spacer + day + spacer + year;
+  return string;
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 module.exports = function (value, decimalPlaces) {
   var num = value.toString(),
       val = void 0;
@@ -13169,7 +13214,7 @@ module.exports = function (value, decimalPlaces) {
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13197,13 +13242,12 @@ var tripsService = {
       return promise;
     },
     addTrip: function addTrip(payload) {
-      /* Vue.http.post('/api/trips', payload).then(response => {
-        console.log('200', response);
-      }, response => {
-        console.log('err', response);
-      }); */
-
       var promise = _vue2.default.http.post('/api/trips', payload);
+
+      return promise;
+    },
+    deleteTrip: function deleteTrip(id) {
+      var promise = _vue2.default.http.delete('/api/trips/' + id);
 
       return promise;
     }
@@ -13213,7 +13257,7 @@ var tripsService = {
 exports.default = tripsService;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13227,7 +13271,7 @@ var _Landing = __webpack_require__(3);
 
 var _Landing2 = _interopRequireDefault(_Landing);
 
-var _Navigation = __webpack_require__(32);
+var _Navigation = __webpack_require__(33);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
@@ -13248,7 +13292,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13274,7 +13318,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13284,7 +13328,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _CalendarDay = __webpack_require__(30);
+var _CalendarDay = __webpack_require__(31);
 
 var _CalendarDay2 = _interopRequireDefault(_CalendarDay);
 
@@ -13311,7 +13355,6 @@ exports.default = {
     };
   }
 }; //
-//
 //
 //
 //
@@ -13379,7 +13422,7 @@ function getDay(day) {
 }
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13412,7 +13455,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13422,7 +13465,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Calendar = __webpack_require__(29);
+var _Calendar = __webpack_require__(30);
 
 var _Calendar2 = _interopRequireDefault(_Calendar);
 
@@ -13443,10 +13486,9 @@ exports.default = {
 //
 //
 //
-//
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13501,7 +13543,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13511,7 +13553,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _numberFilter = __webpack_require__(11);
+var _numberFilter = __webpack_require__(12);
 
 var _numberFilter2 = _interopRequireDefault(_numberFilter);
 
@@ -13605,7 +13647,7 @@ exports.default = {
 //
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13615,62 +13657,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Modal = __webpack_require__(31);
+var _Modal = __webpack_require__(32);
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
-var _tripsService = __webpack_require__(12);
+var _tripsService = __webpack_require__(13);
 
 var _tripsService2 = _interopRequireDefault(_tripsService);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _dateFilter = __webpack_require__(11);
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _dateFilter2 = _interopRequireDefault(_dateFilter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'trips',
@@ -13680,20 +13679,55 @@ exports.default = {
   methods: {
     addTrip: function addTrip() {
       var vm = this,
-          payload = JSON.parse(JSON.stringify(vm.newTrip));
+          validated = vm.validate();
 
-      _tripsService2.default.methods.addTrip(payload).then(function (response) {
-        console.log('200', response.body);
-      }, function (response) {
-        console.log('err', response);
-      });
+      if (validated) {
+        var payload = {};
 
-      vm.closeModal();
+        for (var property in vm.newTrip) {
+          payload[property] = vm.newTrip[property].value;
+        }
+
+        // payload = JSON.parse(JSON.stringify(vm.newTrip));
+        _tripsService2.default.methods.addTrip(payload).then(function (response) {
+          console.log('200', response.body);
+          vm.trips.push(response.body);
+        }, function (response) {
+          console.log('err', response);
+        });
+
+        vm.closeModal();
+      }
     },
     closeModal: function closeModal() {
       var vm = this;
       vm.show = false;
-    }
+    },
+    deleteTrip: function deleteTrip(id, index) {
+      var vm = this;
+
+      _tripsService2.default.methods.deleteTrip(id).then(function (response) {
+        console.log('200', response.body);
+        vm.trips.splice(index, 1);
+      }, function (response) {
+        console.log('err', response);
+      });
+    },
+    validate: function validate() {
+      var vm = this;
+
+      for (var field in vm.newTrip) {
+        if (vm.newTrip[field].value === '' && vm.newTrip[field].required === true) {
+          vm.newTrip[field].error = true;
+          return false;
+        } else if (vm.newTrip[field].error) {
+          vm.newTrip[field].error = false;
+        }
+      }
+
+      return true;
+    },
+    dateFilter: _dateFilter2.default
   },
   created: function created() {
     var vm = this;
@@ -13711,20 +13745,110 @@ exports.default = {
       title: 'My Trips',
       show: false,
       newTrip: {
-        title: '',
-        description: '',
-        notes: '',
-        start_date: '',
-        end_date: '',
-        owner_id: '589263e3e7e17c0bec0cfe2b'
+        title: {
+          value: '',
+          required: true,
+          error: false
+        },
+        description: {
+          value: '',
+          required: false,
+          error: false
+        },
+        notes: {
+          value: '',
+          required: false,
+          error: false
+        },
+        start_date: {
+          value: '',
+          required: true,
+          error: false
+        },
+        end_date: {
+          value: '',
+          required: true,
+          error: false
+        },
+        owner_id: {
+          value: '589263e3e7e17c0bec0cfe2b',
+          required: false,
+          error: false
+        }
+      },
+      tripError: {
+        title: false,
+        start_date: false,
+        end_date: false
       },
       trips: []
     };
   }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+function validate() {
+  /* let requiredFields = $('[data-required] input');
+  
+  for (var i = 0; i < requiredFields.length; i++) {
+    if ($(requiredFields)[i].type === 'date' && !$(requiredFields)[i].valueAsDate) {
+      console.log($(requiredFields)[i].type, $(requiredFields)[i].valueAsDate);
+      return;
+    } else if ($(requiredFields)[i].type === 'text' && !$(requiredFields)[i].value) {
+      console.log($(requiredFields)[i]);
+      return;
+    }
+  }*/
+}
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)();
@@ -13738,20 +13862,6 @@ exports.push([module.i, "\n.modal-mask[data-v-053eb218] {\n  position: fixed;\n 
 
 
 /***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)();
-// imports
-
-
-// module
-exports.push([module.i, "\n#navigation[data-v-12468b39] {\n  background-color: #fff;\n  height: 70px;\n  position: relative;\n}\n.nav-container[data-v-12468b39] {\n  width: auto;\n  max-width: 732px;\n  float: none;\n  display: block;\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 0;\n  padding-right: 0;\n  height: 100%;\n  position: relative;\n}\n.nav-container[data-v-12468b39]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.nav-links[data-v-12468b39] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 61.375%;\n  margin-left: 0%;\n  margin-right: 3%;\n  height: 100%;\n  position: relative;\n}\n.nav-links[data-v-12468b39]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.nav-links[data-v-12468b39]:last-child {\n  margin-right: 0%;\n}\n.nav-links a[data-v-12468b39] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 22.75%;\n  margin-left: 0%;\n  margin-right: 3%;\n  height: 35px;\n  margin-right: 0;\n  padding: 35px 3% 0 15px;\n  position: relative;\n  transition: all 0.5s;\n}\n.nav-links a[data-v-12468b39]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.nav-links a[data-v-12468b39]:last-child {\n  margin-right: 0%;\n}\n.nav-links a[data-v-12468b39]:before {\n  border-left: 1px solid #ddd;\n  content: '';\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n}\n.nav-links a[data-v-12468b39]:hover {\n  background-color: #183e7d;\n  color: #fff;\n  transition: all 0.5s;\n}\n.weather-peek[data-v-12468b39] {\n  align-items: flex-start;\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 35.625%;\n  margin-left: 0%;\n  margin-right: 3%;\n  display: flex;\n  flex-direction: column;\n  font-size: 12px;\n  height: 100%;\n  justify-content: space-around;\n  position: relative;\n}\n.weather-peek[data-v-12468b39]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.weather-peek[data-v-12468b39]:last-child {\n  margin-right: 0%;\n}\n.weather-peek .accent[data-v-12468b39] {\n  color: #183e7d;\n  font-size: 18px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13760,7 +13870,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n#trips[data-v-6d3bbfd9] {\n  background-color: #fff;\n  width: auto;\n  max-width: 732px;\n  float: none;\n  display: block;\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 0;\n  padding-right: 0;\n  border-radius: 0 0 5px 5px;\n}\n#trips[data-v-6d3bbfd9]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n#trips .trip-list[data-v-6d3bbfd9] {\n  padding: 15px;\n}\n#trips .trip-list .headers div[data-v-6d3bbfd9],\n#trips .trip-list .list div[data-v-6d3bbfd9] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 17.6%;\n  margin-left: 0%;\n  margin-right: 3%;\n}\n#trips .trip-list .headers div[data-v-6d3bbfd9]::after,\n#trips .trip-list .list div[data-v-6d3bbfd9]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n#trips .trip-list .headers div[data-v-6d3bbfd9]:last-child,\n#trips .trip-list .list div[data-v-6d3bbfd9]:last-child {\n  margin-right: 0%;\n}\n#trips .list-options[data-v-6d3bbfd9] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n}\n#trips .list-options[data-v-6d3bbfd9]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n#trips .list-options[data-v-6d3bbfd9]:last-child {\n  margin-right: 0%;\n}\n#trips .list-options div[data-v-6d3bbfd9] {\n  float: right;\n  margin: 5px 10px;\n}\n#trips .add-trip-footer[data-v-6d3bbfd9] {\n  display: flex;\n  justify-content: space-between;\n}\n", ""]);
+exports.push([module.i, "\n#navigation[data-v-12468b39] {\n  background-color: #fff;\n  height: 70px;\n  left: auto;\n  position: fixed;\n  right: auto;\n  top: 0;\n  width: 100%;\n}\n.nav-container[data-v-12468b39] {\n  width: auto;\n  max-width: 732px;\n  float: none;\n  display: block;\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 0;\n  padding-right: 0;\n  height: 100%;\n  position: relative;\n}\n.nav-container[data-v-12468b39]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.nav-links[data-v-12468b39] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 61.375%;\n  margin-left: 0%;\n  margin-right: 3%;\n  height: 100%;\n  position: relative;\n}\n.nav-links[data-v-12468b39]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.nav-links[data-v-12468b39]:last-child {\n  margin-right: 0%;\n}\n.nav-links a[data-v-12468b39] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 22.75%;\n  margin-left: 0%;\n  margin-right: 3%;\n  height: 35px;\n  margin-right: 0;\n  padding: 35px 3% 0 15px;\n  position: relative;\n  transition: all 0.5s;\n}\n.nav-links a[data-v-12468b39]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.nav-links a[data-v-12468b39]:last-child {\n  margin-right: 0%;\n}\n.nav-links a[data-v-12468b39]:before {\n  border-left: 1px solid #ddd;\n  content: '';\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n}\n.nav-links a[data-v-12468b39]:hover {\n  background-color: #183e7d;\n  color: #fff;\n  transition: all 0.5s;\n}\n.weather-peek[data-v-12468b39] {\n  align-items: flex-start;\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 35.625%;\n  margin-left: 0%;\n  margin-right: 3%;\n  display: flex;\n  flex-direction: column;\n  font-size: 12px;\n  height: 100%;\n  justify-content: space-around;\n  position: relative;\n}\n.weather-peek[data-v-12468b39]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n.weather-peek[data-v-12468b39]:last-child {\n  margin-right: 0%;\n}\n.weather-peek .accent[data-v-12468b39] {\n  color: #183e7d;\n  font-size: 18px;\n}\n", ""]);
 
 // exports
 
@@ -13774,7 +13884,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "/* Global Styles */\nbody {\n  background-color: #f2f2f2;\n  font-family: 'Avenir', Helvetica, Arial, sans-serif;\n}\na {\n  color: #000;\n  font-size: 18px;\n  text-decoration: none;\n}\na:visited {\n  color: #000;\n}\nbutton {\n  background: #2155aa;\n  border: 1px solid transparent;\n  color: #fff;\n  font-size: 12px;\n  font-weight: 200;\n  height: 40px;\n  min-width: 100px;\n  padding: 10px;\n  position: relative;\n  text-align: center;\n  transition: 0.5s all;\n  vertical-align: middle;\n  white-space: nowrap;\n}\nbutton:hover {\n  background: #2764c9;\n  border: 1px solid #2155aa;\n  cursor: pointer;\n  transition: 0.5s all;\n}\ninput,\ntextarea {\n  box-sizing: border-box;\n}\nform {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n  float: none;\n  position: relative;\n}\nform::after {\n  content: '';\n  display: table;\n  clear: both;\n}\nform:last-child {\n  margin-right: 0%;\n}\nform input,\nform textarea {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n  font-size: 14px;\n  height: 40px;\n  padding: 5px 10px;\n}\nform input::after,\nform textarea::after {\n  content: '';\n  display: table;\n  clear: both;\n}\nform input:last-child,\nform textarea:last-child {\n  margin-right: 0%;\n}\nform label {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n  font-size: 12px;\n  font-weight: 600;\n  margin-top: 5px;\n}\nform label::after {\n  content: '';\n  display: table;\n  clear: both;\n}\nform label:last-child {\n  margin-right: 0%;\n}\nform .input-group {\n  display: block;\n  height: 60px;\n  margin-bottom: 10px;\n  position: relative;\n}\nbody {\n  margin: 0;\n}\nh1 {\n  color: #183e7d;\n}\n", ""]);
+exports.push([module.i, "\n#trips[data-v-6d3bbfd9] {\n  background-color: #fff;\n  width: auto;\n  max-width: 732px;\n  float: none;\n  display: block;\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 0;\n  padding-right: 0;\n  border-radius: 0 0 5px 5px;\n}\n#trips[data-v-6d3bbfd9]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n#trips .trip-list[data-v-6d3bbfd9] {\n  padding: 15px;\n}\n#trips .trip-list .headers div[data-v-6d3bbfd9],\n#trips .trip-list .list div[data-v-6d3bbfd9] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 17.6%;\n  margin-left: 0%;\n  margin-right: 3%;\n  margin-bottom: 5px;\n}\n#trips .trip-list .headers div[data-v-6d3bbfd9]::after,\n#trips .trip-list .list div[data-v-6d3bbfd9]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n#trips .trip-list .headers div[data-v-6d3bbfd9]:last-child,\n#trips .trip-list .list div[data-v-6d3bbfd9]:last-child {\n  margin-right: 0%;\n}\n#trips .trip-list .edit-trip button[data-v-6d3bbfd9] {\n  min-width: 55px;\n  margin-right: 10px;\n}\n#trips .trip-list .edit-trip button[data-v-6d3bbfd9]:last-child {\n  margin-right: 0;\n}\n#trips .list-options[data-v-6d3bbfd9] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n}\n#trips .list-options[data-v-6d3bbfd9]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n#trips .list-options[data-v-6d3bbfd9]:last-child {\n  margin-right: 0%;\n}\n#trips .list-options div[data-v-6d3bbfd9] {\n  float: right;\n  margin: 5px 10px;\n}\n#trips .add-trip-footer[data-v-6d3bbfd9] {\n  display: flex;\n  justify-content: space-between;\n}\n#trips .required[data-v-6d3bbfd9] {\n  color: #ff3232;\n}\n#trips .error input[data-v-6d3bbfd9] {\n  border-color: #ff3232;\n  background-color: #f99;\n}\n", ""]);
 
 // exports
 
@@ -13788,7 +13898,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n#calendar[data-v-9dc4d2ba] {\n  background-color: #fff;\n  border-radius: 5px;\n  padding: 10px;\n  width: 100%;\n}\n.table-container[data-v-9dc4d2ba] {\n  padding: 15px 0;\n}\ntable[data-v-9dc4d2ba] {\n  border-spacing: 0;\n  width: 100%;\n}\ntable td[data-v-9dc4d2ba],\ntable th[data-v-9dc4d2ba] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 11.714285714285714%;\n  margin-left: 0%;\n  margin-right: 3%;\n  padding: 0;\n}\ntable td[data-v-9dc4d2ba]::after,\ntable th[data-v-9dc4d2ba]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\ntable td[data-v-9dc4d2ba]:last-child,\ntable th[data-v-9dc4d2ba]:last-child {\n  margin-right: 0%;\n}\ntable thead tr th[data-v-9dc4d2ba] {\n  position: relative;\n  text-align: center;\n}\ntable thead tr th[data-v-9dc4d2ba]:after {\n  border-bottom: 1px solid #ddd;\n  position: absolute;\n  width: 125%;\n}\ntable thead tr th[data-v-9dc4d2ba]:last-child:after {\n  width: 100%;\n}\ntable thead tr td.month[data-v-9dc4d2ba] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n  font-size: 24px;\n  margin-bottom: 20px;\n  text-align: center;\n}\ntable thead tr td.month[data-v-9dc4d2ba]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\ntable thead tr td.month[data-v-9dc4d2ba]:last-child {\n  margin-right: 0%;\n}\ntable tbody td[data-v-9dc4d2ba] {\n  height: 100px;\n  position: relative;\n}\n", ""]);
+exports.push([module.i, "/* Global Styles */\nbody {\n  background-color: #f2f2f2;\n  font-family: 'Avenir', Helvetica, Arial, sans-serif;\n}\na {\n  color: #000;\n  font-size: 18px;\n  text-decoration: none;\n}\na:visited {\n  color: #000;\n}\nbutton {\n  background: #2155aa;\n  border: 1px solid transparent;\n  color: #fff;\n  font-size: 12px;\n  font-weight: 200;\n  height: 40px;\n  min-width: 100px;\n  padding: 10px;\n  position: relative;\n  text-align: center;\n  transition: 0.5s all;\n  vertical-align: middle;\n  white-space: nowrap;\n}\nbutton:hover {\n  background: #2764c9;\n  border: 1px solid #2155aa;\n  cursor: pointer;\n  transition: 0.5s all;\n}\nbutton.danger {\n  background-color: #ff3232;\n}\nbutton.danger:hover {\n  background-color: #ff6565;\n  border: 1px solid #ff5151;\n}\ninput,\ntextarea {\n  box-sizing: border-box;\n}\nform {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n  float: none;\n  position: relative;\n}\nform::after {\n  content: '';\n  display: table;\n  clear: both;\n}\nform:last-child {\n  margin-right: 0%;\n}\nform input,\nform textarea {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n  font-size: 14px;\n  height: 40px;\n  padding: 5px 10px;\n}\nform input::after,\nform textarea::after {\n  content: '';\n  display: table;\n  clear: both;\n}\nform input:last-child,\nform textarea:last-child {\n  margin-right: 0%;\n}\nform label {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n  font-size: 12px;\n  font-weight: 600;\n  margin-top: 5px;\n}\nform label::after {\n  content: '';\n  display: table;\n  clear: both;\n}\nform label:last-child {\n  margin-right: 0%;\n}\nform .input-group {\n  display: block;\n  height: 60px;\n  margin-bottom: 10px;\n  position: relative;\n}\nh1 {\n  margin-left: 10px;\n  margin-right: 10px;\n}\nbody {\n  margin: 0;\n}\nh1 {\n  color: #183e7d;\n}\n.router {\n  margin-top: 80px !important;\n}\n", ""]);
 
 // exports
 
@@ -13802,7 +13912,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n#landing[data-v-e15cb87c] {\n  width: auto;\n  max-width: 732px;\n  float: none;\n  display: block;\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 0;\n  padding-right: 0;\n}\n#landing[data-v-e15cb87c]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n", ""]);
+exports.push([module.i, "\n#calendar[data-v-9dc4d2ba] {\n  background-color: #fff;\n  border-radius: 5px;\n  padding: 10px;\n  width: 100%;\n}\n.table-container[data-v-9dc4d2ba] {\n  padding: 15px 0;\n}\ntable[data-v-9dc4d2ba] {\n  border-spacing: 0;\n  width: 100%;\n}\ntable td[data-v-9dc4d2ba],\ntable th[data-v-9dc4d2ba] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 11.714285714285714%;\n  margin-left: 0%;\n  margin-right: 3%;\n  padding: 0;\n}\ntable td[data-v-9dc4d2ba]::after,\ntable th[data-v-9dc4d2ba]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\ntable td[data-v-9dc4d2ba]:last-child,\ntable th[data-v-9dc4d2ba]:last-child {\n  margin-right: 0%;\n}\ntable thead tr th[data-v-9dc4d2ba] {\n  position: relative;\n  text-align: center;\n}\ntable thead tr th[data-v-9dc4d2ba]:after {\n  border-bottom: 1px solid #ddd;\n  position: absolute;\n  width: 125%;\n}\ntable thead tr th[data-v-9dc4d2ba]:last-child:after {\n  width: 100%;\n}\ntable thead tr td.month[data-v-9dc4d2ba] {\n  float: left;\n  clear: none;\n  text-align: inherit;\n  width: 100%;\n  margin-left: 0%;\n  margin-right: 3%;\n  font-size: 24px;\n  margin-bottom: 20px;\n  text-align: center;\n}\ntable thead tr td.month[data-v-9dc4d2ba]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\ntable thead tr td.month[data-v-9dc4d2ba]:last-child {\n  margin-right: 0%;\n}\ntable tbody td[data-v-9dc4d2ba] {\n  height: 100px;\n  position: relative;\n}\n", ""]);
 
 // exports
 
@@ -13816,7 +13926,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "\n#calendarDay[data-v-eb5d87ae] {\n  position: relative;\n}\n#calendarDay .day[data-v-eb5d87ae] {\n  left: 5px;\n  position: absolute;\n  top: 5px;\n}\n", ""]);
+exports.push([module.i, "\n#landing[data-v-e15cb87c] {\n  width: auto;\n  max-width: 732px;\n  float: none;\n  display: block;\n  margin-right: auto;\n  margin-left: auto;\n  padding-left: 0;\n  padding-right: 0;\n}\n#landing[data-v-e15cb87c]::after {\n  content: '';\n  display: table;\n  clear: both;\n}\n", ""]);
 
 // exports
 
@@ -13830,7 +13940,7 @@ exports = module.exports = __webpack_require__(0)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\n#calendarDay[data-v-eb5d87ae] {\n  position: relative;\n}\n#calendarDay .day[data-v-eb5d87ae] {\n  left: 5px;\n  position: absolute;\n  top: 5px;\n}\n", ""]);
 
 // exports
 
@@ -13839,15 +13949,29 @@ exports.push([module.i, "", ""]);
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
+exports = module.exports = __webpack_require__(0)();
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
 
 /* styles */
-__webpack_require__(45)
+__webpack_require__(46)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(15),
+  __webpack_require__(16),
   /* template */
-  __webpack_require__(37),
+  __webpack_require__(38),
   /* scopeId */
   "data-v-9dc4d2ba",
   /* cssModules */
@@ -13874,18 +13998,18 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(47)
+__webpack_require__(48)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(16),
+  __webpack_require__(17),
   /* template */
-  __webpack_require__(39),
+  __webpack_require__(40),
   /* scopeId */
   "data-v-eb5d87ae",
   /* cssModules */
@@ -13912,18 +14036,18 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(41)
+__webpack_require__(42)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(18),
+  __webpack_require__(19),
   /* template */
-  __webpack_require__(33),
+  __webpack_require__(34),
   /* scopeId */
   "data-v-053eb218",
   /* cssModules */
@@ -13950,18 +14074,18 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(42)
+__webpack_require__(43)
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(19),
+  __webpack_require__(20),
   /* template */
-  __webpack_require__(34),
+  __webpack_require__(35),
   /* scopeId */
   "data-v-12468b39",
   /* cssModules */
@@ -13988,7 +14112,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14023,7 +14147,7 @@ if (false) {
 }
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14062,7 +14186,7 @@ if (false) {
 }
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14080,10 +14204,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Add a Trip")])])]), _c('div', {
     staticClass: "trip-list"
-  }, [_vm._m(0), _vm._l((_vm.trips), function(trip) {
+  }, [_vm._m(0), _vm._l((_vm.trips), function(trip, index) {
     return _c('div', {
       staticClass: "list"
-    }, [_c('div', [_vm._v(_vm._s(trip.title))]), _c('div', [_vm._v(_vm._s(trip.description))]), _c('div', [_vm._v(_vm._s(trip.start_date))]), _c('div', [_vm._v(_vm._s(trip.end_date))]), _c('div', [_vm._v("Edit Button")])])
+    }, [_c('div', [_vm._v(_vm._s(trip.title || '-'))]), _c('div', [_vm._v(_vm._s(trip.description || '-'))]), _c('div', [_vm._v(_vm._s(_vm.dateFilter(trip.start_date, 'MM-DD-YYYY', '/')))]), _c('div', [_vm._v(_vm._s(_vm.dateFilter(trip.end_date, 'MM-DD-YYYY', '/')))]), _c('div', {
+      staticClass: "edit-trip"
+    }, [_c('button', [_vm._v("Edit")]), _c('button', {
+      staticClass: "danger",
+      on: {
+        "click": function($event) {
+          _vm.deleteTrip(trip._id, index)
+        }
+      }
+    }, [_vm._v("Delete")])])])
   })], 2), (_vm.show) ? _c('Modal', {
     attrs: {
       "showModal": _vm.show
@@ -14093,24 +14226,29 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('h2', {
     slot: "header"
-  }, [_vm._v("New Trip")]), _c('div', {
+  }, [_vm._v("Add a New Trip")]), _c('div', {
     slot: "body"
   }, [_c('form', [_c('div', {
-    staticClass: "input-group"
-  }, [_c('label', [_vm._v("Title")]), _c('input', {
+    staticClass: "input-group",
+    class: {
+      error: _vm.newTrip.title.error
+    }
+  }, [_c('label', [_vm._v("Title "), _c('span', {
+    staticClass: "required"
+  }, [_vm._v("*")])]), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.newTrip.title),
-      expression: "newTrip.title"
+      value: (_vm.newTrip.title.value),
+      expression: "newTrip.title.value"
     }],
     domProps: {
-      "value": _vm._s(_vm.newTrip.title)
+      "value": _vm._s(_vm.newTrip.title.value)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.newTrip.title = $event.target.value
+        _vm.newTrip.title.value = $event.target.value
       }
     }
   })]), _c('div', {
@@ -14119,16 +14257,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.newTrip.description),
-      expression: "newTrip.description"
+      value: (_vm.newTrip.description.value),
+      expression: "newTrip.description.value"
     }],
     domProps: {
-      "value": _vm._s(_vm.newTrip.description)
+      "value": _vm._s(_vm.newTrip.description.value)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.newTrip.description = $event.target.value
+        _vm.newTrip.description.value = $event.target.value
       }
     }
   })]), _c('div', {
@@ -14137,72 +14275,83 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.newTrip.notes),
-      expression: "newTrip.notes"
+      value: (_vm.newTrip.notes.value),
+      expression: "newTrip.notes.value"
     }],
     domProps: {
-      "value": _vm._s(_vm.newTrip.notes)
+      "value": _vm._s(_vm.newTrip.notes.value)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.newTrip.notes = $event.target.value
+        _vm.newTrip.notes.value = $event.target.value
       }
     }
   })]), _c('div', {
-    staticClass: "input-group"
-  }, [_c('label', [_vm._v("Start Date")]), _c('input', {
+    staticClass: "input-group",
+    class: {
+      error: _vm.newTrip.start_date.error
+    }
+  }, [_c('label', [_vm._v("Start Date "), _c('span', {
+    staticClass: "required"
+  }, [_vm._v("*")])]), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.newTrip.start_date),
-      expression: "newTrip.start_date"
+      value: (_vm.newTrip.start_date.value),
+      expression: "newTrip.start_date.value"
     }],
     attrs: {
       "type": "date"
     },
     domProps: {
-      "value": _vm._s(_vm.newTrip.start_date)
+      "value": _vm._s(_vm.newTrip.start_date.value)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.newTrip.start_date = $event.target.value
+        _vm.newTrip.start_date.value = $event.target.value
       }
     }
   })]), _c('div', {
-    staticClass: "input-group"
-  }, [_c('label', [_vm._v("End Date")]), _c('input', {
+    staticClass: "input-group",
+    class: {
+      error: _vm.newTrip.end_date.error
+    }
+  }, [_c('label', [_vm._v("End Date "), _c('span', {
+    staticClass: "required"
+  }, [_vm._v("*")])]), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.newTrip.end_date),
-      expression: "newTrip.end_date"
+      value: (_vm.newTrip.end_date.value),
+      expression: "newTrip.end_date.value"
     }],
     attrs: {
       "type": "date"
     },
     domProps: {
-      "value": _vm._s(_vm.newTrip.end_date)
+      "value": _vm._s(_vm.newTrip.end_date.value)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.newTrip.end_date = $event.target.value
+        _vm.newTrip.end_date.value = $event.target.value
       }
     }
   })])])]), _c('div', {
     staticClass: "add-trip-footer",
     slot: "footer"
   }, [_c('button', {
-    on: {
-      "click": _vm.addTrip
-    }
-  }, [_vm._v("Save")]), _c('button', {
+    staticClass: "danger",
     on: {
       "click": _vm.closeModal
     }
-  }, [_vm._v("Cancel")])])]) : _vm._e()], 1)
+  }, [_vm._v("Cancel")]), _c('button', {
+    on: {
+      "click": _vm.addTrip
+    }
+  }, [_vm._v("Save")])])]) : _vm._e()], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "headers"
@@ -14217,7 +14366,7 @@ if (false) {
 }
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14225,7 +14374,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "app"
     }
-  }, [_c('navigation'), _c('router-view')], 1)
+  }, [_c('navigation'), _c('router-view', {
+    staticClass: "router"
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -14236,7 +14387,7 @@ if (false) {
 }
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14244,7 +14395,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "calendar"
     }
-  }, [_c('h1', [_vm._v(_vm._s(_vm.title))]), _c('div', {
+  }, [_c('div', {
     staticClass: "table-container"
   }, [_c('table', [_c('thead', [_c('tr', [_c('td', {
     staticClass: "month"
@@ -14269,7 +14420,7 @@ if (false) {
 }
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14277,7 +14428,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "landing"
     }
-  }, [_c('h1', [_vm._v(_vm._s(_vm.title))]), _c('calendar')], 1)
+  }, [_c('calendar')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -14288,7 +14439,7 @@ if (false) {
 }
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14309,7 +14460,7 @@ if (false) {
 }
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14328,13 +14479,13 @@ if (false) {
 }
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(21);
+var content = __webpack_require__(22);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14354,13 +14505,13 @@ if(false) {
 }
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(22);
+var content = __webpack_require__(23);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14380,13 +14531,13 @@ if(false) {
 }
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(23);
+var content = __webpack_require__(24);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14406,13 +14557,13 @@ if(false) {
 }
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(24);
+var content = __webpack_require__(25);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14432,13 +14583,13 @@ if(false) {
 }
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(25);
+var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14458,13 +14609,13 @@ if(false) {
 }
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(26);
+var content = __webpack_require__(27);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14484,13 +14635,13 @@ if(false) {
 }
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(27);
+var content = __webpack_require__(28);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14510,13 +14661,13 @@ if(false) {
 }
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(28);
+var content = __webpack_require__(29);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14536,7 +14687,7 @@ if(false) {
 }
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 /**
@@ -14569,7 +14720,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports) {
 
 var g;
@@ -14596,13 +14747,13 @@ module.exports = g;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

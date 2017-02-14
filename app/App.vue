@@ -1,7 +1,7 @@
 <template lang="pug">
   #app
     navigation
-    router-view
+    router-view.router
 </template>
 
 <script>
@@ -26,4 +26,7 @@ export default {
 
   h1
     color $primary-color
+    
+  .router
+    margin-top 80px !important
 </style>

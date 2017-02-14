@@ -1,6 +1,5 @@
 <template lang="pug">
   #calendar
-    h1 {{ title }}
     .table-container
       table
         thead

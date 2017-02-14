@@ -70,7 +70,14 @@ gulp.task( 'webpack', [], (cb) => {
       alias: {
         'vue$': 'vue/dist/vue.common.js'
       }
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jquery: 'jquery',
+        jQuery: 'jquery'
+      })
+    ]
   };
 
   return webpack(webpackConfig, function(err, stats) {
