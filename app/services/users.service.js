@@ -11,7 +11,7 @@ const usersService = {
     },
     getUsers(id) {
       id = id || '589263e3e7e17c0bec0cfe2b';
-      let promise = id ? Vue.http.get('/api/users/' + id) : promise = Vue.http.get('/api/users');
+      let promise = id ? Vue.http.get('/api/users/' + id) : Vue.http.get('/api/users');
 
       return promise;
     },

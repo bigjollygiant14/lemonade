@@ -10,6 +10,7 @@
 
 <script>
 import number from '../services/number.filter.js'
+import weatherService from '../services/weather.service.js'
 
 export default {
   name: 'navigation',
@@ -89,8 +90,18 @@ export default {
         }
       }
     }
+  },
+  created: function() {
+    let vm = this;
+
+    /* weatherService.methods.getWeather().then(response => {
+          vm.weather = JSON.parse( response.body );
+        }, response => {
+          console.log('err', response);
+        }); */
   }
 }
+
 </script>
 
 <style lang="stylus" scoped>

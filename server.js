@@ -22,6 +22,7 @@ app.use( bodyParser.json() );
 // API Routes
 app.use( require('./_server/routes/users') );
 app.use( require('./_server/routes/trips') );
+app.use( require('./_server/routes/weather') );
 
 // Serve Content from public/app
 app.use( express.static(__dirname + '/public/app') );

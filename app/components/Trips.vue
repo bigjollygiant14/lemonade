@@ -32,11 +32,10 @@
               button(class="danger", v-on:click='showDeleteModal(trip._id, index)') Delete
             div(v-show="trip.edit")
               button(v-on:click='editTrip(trip)') Cancel
-              button(class="danger", v-on:click='updateTrip(trip, index)') Save
+              button(class="success", v-on:click='updateTrip(trip, index)') Save
 
           .expand-details
-            a(v-show="!trip.showMore", v-on:click="moreDetails(trip)") Show More <span class="chevron-down"></span>
-            a(v-show="trip.showMore", v-on:click="moreDetails(trip)") Show Less <span class="chevron-up"></span>
+            a(v-on:click="moreDetails(trip)") <i class="chevron" v-bind:class="{ 'chevron-down': !trip.showMore, 'chevron-up': trip.showMore }"></i>Show <span v-show="!trip.showMore">More</span><span v-show="trip.showMore">Less</span>
 
           .more-details(v-show="trip.showMore")
             div
@@ -71,7 +70,7 @@
             input(type='date', v-model="newTrip.end_date.value")
       div(slot="footer", class="add-trip-footer")
         button(class="danger" v-on:click='closeModal') Cancel
-        button(v-on:click='addTrip') Save
+        button(class="success" v-on:click='addTrip') Save
 
     Modal(v-if="showDeleteModalBoolean", :showModal="showDeleteModalBoolean", v-on:close="closeModal")
       h2(slot="header") Delete a Trip
@@ -93,115 +92,14 @@ export default {
     Modal
   },
   methods: {
-    addTrip: function() {
-      let vm = this,
-          validated = vm.validate(vm.newTrip);
-
-      if (validated) {
-        let payload = {};
-
-        for (let property in vm.newTrip) {
-          payload[property] = vm.newTrip[property].value;
-        }
-
-        tripsService.methods.addTrip(payload).then(response => {
-            console.log('200', response.body);
-
-            // attach view helpers
-            response.body.edit = false;
-            response.body.showMore = false;
-
-            // update model -- only need to update root since its a shallow clone
-            vm.$root.$data.myTrips.push(response.body);
-
-            // clear form
-            vm.newTrip = _.cloneDeep(vm.newTripCopy);
-          }, response => {
-            console.log('err', response);
-          });
-
-        vm.closeModal();
-      }
-    },
-    closeModal: function() {
-      let vm = this;
-      vm.show = false;
-      vm.showDeleteModalBoolean = false;
-    },
-    deleteTrip: function() {
-      let vm = this;
-
-      tripsService.methods.deleteTrip(vm.deleteTripObject.id).then(response => {
-          // update model
-          vm.$root.$data.myTrips.splice(vm.deleteTripObject.index, 1);
-
-          // close modal
-          vm.showDeleteModalBoolean = false;
-
-          // nullify temporary object
-          vm.deleteTripObject = {
-            id: null,
-            index: null
-          };
-        }, response => {
-          console.log('err', response);
-        });
-    },
-    editTrip: function(object) {
-      object.edit = !object.edit ? true : false;
-
-      if (object.edit) object.showMore = true;
-      // object.showMore = !object.edit ? true : false;
-    },
-    moreDetails: function(object) {
-      object.showMore = !object.showMore ? true : false;
-    },
-    showDeleteModal: function(id, index) {
-      let vm = this;
-
-      vm.deleteTripObject = {
-        id: id,
-        index: index
-      };
-      vm.showDeleteModalBoolean = true;
-    },
-    updateTrip: function(object, index) {
-      let vm = this,
-          validated = vm.validate(object),
-          failCopy = _.cloneDeep(object);
-
-      if (validated) {
-        let payload = {};
-
-        // filter out view and vue applied properties
-        for (let property in object) {
-          if (property === 'title' || property === 'description' || property === 'notes' || property === 'start_date' || property === 'end_date' || property === '_id') {
-            payload[property] = object[property];
-          }
-        }
-
-        tripsService.methods.updateTrip(object._id, payload).then(response => {
-            vm.trips[index].edit = false;
-          }, response => {
-            console.log('err', response);
-            vm.trips[index] = failCopy;
-          });
-      }
-    },
-    validate: function(object) {
-      let vm = this;
-
-      for (let field in object) {
-        if (object[field].value === '' && object[field].required === true) {
-          object[field].error = true;
-          return false;
-        } else if (object[field].error) {
-          object[field].error = false;
-        }
-      }
-
-      return true;
-    },
+    addTrip: addTrip,
+    closeModal: closeModal,
+    deleteTrip: deleteTrip,
+    editTrip: editTrip,
+    moreDetails: moreDetails,
+    showDeleteModal: showDeleteModal,
+    updateTrip: updateTrip,
+    validate: validate,
     dateFilter
   },
   created: function() {
@@ -302,6 +200,122 @@ export default {
   }
 }
 
+function addTrip() {
+  let vm = this,
+      validated = vm.validate(vm.newTrip);
+
+  if (validated) {
+    let payload = {};
+
+    for (let property in vm.newTrip) {
+      payload[property] = vm.newTrip[property].value;
+    }
+
+    tripsService.methods.addTrip(payload).then(response => {
+        console.log('200', response.body);
+
+        // attach view helpers
+        response.body.edit = false;
+        response.body.showMore = false;
+
+        // update model -- only need to update root since its a shallow clone
+        vm.$root.$data.myTrips.push(response.body);
+
+        // clear form
+        vm.newTrip = _.cloneDeep(vm.newTripCopy);
+      }, response => {
+        console.log('err', response);
+      });
+
+    vm.closeModal();
+  }
+}
+
+function closeModal() {
+  let vm = this;
+  vm.show = false;
+  vm.showDeleteModalBoolean = false;
+}
+
+function deleteTrip() {
+  let vm = this;
+
+  tripsService.methods.deleteTrip(vm.deleteTripObject.id).then(response => {
+      // update model
+      vm.$root.$data.myTrips.splice(vm.deleteTripObject.index, 1);
+
+      // close modal
+      vm.showDeleteModalBoolean = false;
+
+      // nullify temporary object
+      vm.deleteTripObject = {
+        id: null,
+        index: null
+      };
+    }, response => {
+      console.log('err', response);
+    });
+}
+
+function editTrip(object) {
+  object.edit = !object.edit ? true : false;
+
+  if (object.edit) object.showMore = true;
+  // object.showMore = !object.edit ? true : false;
+}
+
+function moreDetails(object) {
+  object.showMore = !object.showMore ? true : false;
+}
+
+function showDeleteModal(id, index) {
+  let vm = this;
+
+  vm.deleteTripObject = {
+    id: id,
+    index: index
+  };
+  vm.showDeleteModalBoolean = true;
+}
+
+function updateTrip(object, index) {
+  let vm = this,
+      validated = vm.validate(object),
+      failCopy = _.cloneDeep(object);
+
+  if (validated) {
+    let payload = {};
+
+    // filter out view and vue applied properties
+    for (let property in object) {
+      if (property === 'title' || property === 'description' || property === 'notes' || property === 'start_date' || property === 'end_date' || property === '_id') {
+        payload[property] = object[property];
+      }
+    }
+
+    tripsService.methods.updateTrip(object._id, payload).then(response => {
+        vm.trips[index].edit = false;
+      }, response => {
+        console.log('err', response);
+        vm.trips[index] = failCopy;
+      });
+  }
+}
+
+function validate(object) {
+  let vm = this;
+
+  for (let field in object) {
+    if (object[field].value === '' && object[field].required === true) {
+      object[field].error = true;
+      return false;
+    } else if (object[field].error) {
+      object[field].error = false;
+    }
+  }
+
+  return true;
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -317,17 +331,34 @@ export default {
     padding 15px
 
     .headers, .list-item
+      clearfix()
+      
+      border-bottom 1px solid lighten($gray-2, 20%)
+      margin-bottom 10px
+      
+      &:last-child
+        border-bottom none
+        margin-bottom 0
+
       > div
         column(1/4)
         
         &.edit-trip
           margin-right 0
-        
+
+          button
+            min-width 55px
+            margin-right 10px
+
+            &:last-child
+              margin-right 0
+
         &.expand-details, &.more-details
           column(1)
           margin-bottom 5px
 
         &.expand-details
+          position relative
           text-align right
 
           a
@@ -335,22 +366,24 @@ export default {
             &:hover
               cursor pointer
               text-decoration underline
-              
+
+            i
+              margin-right 0.5em
+              &.chevron-up
+                &:before
+                  top 0.8em
+
         &.more-details
+          label
+            font-size $font-sml
+            text-decoration underline
+
           > div
             column(1/2)
 
-    .edit-trip
-      button
-        min-width 55px
-        margin-right 10px
-
-        &:last-child
-          margin-right 0
-
   .list-options
-    column(1)
-    
+    clearfix()
+
     div
       float right
       margin 5px 10px

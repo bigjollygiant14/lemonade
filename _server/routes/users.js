@@ -16,7 +16,7 @@ router.get( '/api/users', function(req, res) {
 router.post( '/api/users', function( req, res, next ) {
   Users.create(req.body, function (err, post) {
     if (err) return next(err);
-    res.json(post);
+    res.json( post );
   });
 });
 

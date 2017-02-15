@@ -15,7 +15,7 @@ const tripsService = {
       return promise;
     },
     getTrips(id) {
-      let promise = id ? Vue.http.get('/api/trips/' + id) : promise = Vue.http.get('/api/trips');
+      let promise = id ? Vue.http.get('/api/trips/' + id) : Vue.http.get('/api/trips');
 
       return promise;
     },
