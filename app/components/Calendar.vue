@@ -27,7 +27,7 @@ export default {
     CalendarDay
   },
   created () {
-    // renderWeeks();
+    // renderWeeks()
   },
   data () {
     return {
@@ -39,58 +39,56 @@ export default {
   }
 }
 
-function daysInMonth(month) {
-  let now = new Date(),
-      days = 0;
+function daysInMonth (month) {
+  let now = new Date()
+  let days = 0
 
-  if (month) days = new Date(now.getFullYear(), month, 0).getDate();
-  else days = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+  if (month) days = new Date(now.getFullYear(), month, 0).getDate()
+  else days = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate()
 
-  return days;
+  return days
 }
 
-function firstDayInMonth(month) {
-  let now = new Date(),
-      day = 0;
+function firstDayInMonth (month) {
+  let now = new Date()
+  let day = 0
 
-  if (month) day = new Date(now.getFullYear(), month, 1).getDay();
-  else day = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
+  if (month) day = new Date(now.getFullYear(), month, 1).getDay()
+  else day = new Date(now.getFullYear(), now.getMonth(), 1).getDay()
 
-  return day;
+  return day
 }
 
-function renderWeeks() {
-  let vm = this,
-      totalDays = daysInMonth(),
-      firstDay = firstDayInMonth();
+function renderWeeks () {
+  let totalDays = daysInMonth()
+  let firstDay = firstDayInMonth()
 
-  let weeks = Math.ceil((totalDays + firstDay) / 7);
+  let weeks = Math.ceil((totalDays + firstDay) / 7)
 
-  return weeks;
+  return weeks
 }
 
-function getDay(day) {
-  let vm = this,
-      firstDay = firstDayInMonth();
+/* function getDay (day) {
+  let firstDay = firstDayInMonth()
 
-  /* console.log('week', week);
-  console.log(vm.dayCount, firstDay);
+  console.log('week', week)
+  console.log(vm.dayCount, firstDay)
 
   if (week === 1 && vm.dayCount !== firstDay) {
     // week not started yet
     return null
   } else if (week === 1 && vm.dayCount === firstDay) {
     // first day
-    vm.dayCount = 1;
-    return vm.dayCount;
+    vm.dayCount = 1
+    return vm.dayCount
   } else {
     // every other day
-    vm.dayCount ++;
-    return vm.dayCount - 1;
-  } */
-  console.log(day);
-  return Number(day);
-}
+    vm.dayCount ++
+    return vm.dayCount - 1
+  }
+  console.log(day)
+  return Number(day)
+} */
 </script>
 
 <style lang="stylus" scoped>

@@ -1,9 +1,9 @@
 'use strict'
 
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import App from './App.vue';
-import VueResource from 'vue-resource';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import App from './App.vue'
+import VueResource from 'vue-resource'
 
 // Router
 Vue.use(VueRouter)
@@ -21,15 +21,16 @@ const routes = [{
 }, {
   path: '/admin',
   component: Admin
-}];
+}]
 
 const router = new VueRouter({
   routes: routes
-});
+})
 
 // HTTP Resource
 Vue.use(VueResource)
 
+/* eslint-disable no-new */
 new Vue({
   router,
   el: '#app',
@@ -39,4 +40,5 @@ new Vue({
     currentUser: {}
   },
   render: (h) => h(App)
-});
+})
+/* eslint-enable no-new */

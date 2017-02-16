@@ -1,4 +1,4 @@
-<template lang="pug">
+<template lang='pug'>
   #navigation
     .nav-container
       .nav-links
@@ -10,7 +10,7 @@
 
 <script>
 import number from '../services/number.filter.js'
-import weatherService from '../services/weather.service.js'
+// import weatherService from '../services/weather.service.js'
 
 export default {
   name: 'navigation',
@@ -27,10 +27,10 @@ export default {
         }, {
           name: 'My Trips',
           link: '/trips'
-        }/*, {
+        }/* , {
           name: 'Admin',
           link: '/admin'
-        }*/
+        } */
       ],
       weather: {
         'currently': {
@@ -53,58 +53,58 @@ export default {
           'ozone': 316.53
         },
         'daily': {
-          "summary": "Mixed precipitation throughout the week, with temperatures rising to 47°F on Wednesday.",
-          "icon": "snow",
-          "data": [
+          'summary': 'Mixed precipitation throughout the week, with temperatures rising to 47°F on Wednesday.',
+          'icon': 'snow',
+          'data': [
             {
-              "time": 1486105200,
-              "summary": "Snow (1–3 in.) in the morning and afternoon.",
-              "icon": "snow",
-              "sunriseTime": 1486131352,
-              "sunsetTime": 1486168144,
-              "moonPhase": 0.24,
-              "precipIntensity": 0.0039,
-              "precipIntensityMax": 0.0216,
-              "precipIntensityMaxTime": 1486188000,
-              "precipProbability": 0.6,
-              "precipType": "snow",
-              "precipAccumulation": 1.007,
-              "temperatureMin": 21.42,
-              "temperatureMinTime": 1486134000,
-              "temperatureMax": 35.08,
-              "temperatureMaxTime": 1486155600,
-              "apparentTemperatureMin": 17.08,
-              "apparentTemperatureMinTime": 1486188000,
-              "apparentTemperatureMax": 31.41,
-              "apparentTemperatureMaxTime": 1486155600,
-              "dewPoint": 24.62,
-              "humidity": 0.88,
-              "windSpeed": 3.42,
-              "windBearing": 231,
-              "visibility": 5.31,
-              "cloudCover": 0.63,
-              "pressure": 1020.04,
-              "ozone": 319.75
+              'time': 1486105200,
+              'summary': 'Snow (1–3 in.) in the morning and afternoon.',
+              'icon': 'snow',
+              'sunriseTime': 1486131352,
+              'sunsetTime': 1486168144,
+              'moonPhase': 0.24,
+              'precipIntensity': 0.0039,
+              'precipIntensityMax': 0.0216,
+              'precipIntensityMaxTime': 1486188000,
+              'precipProbability': 0.6,
+              'precipType': 'snow',
+              'precipAccumulation': 1.007,
+              'temperatureMin': 21.42,
+              'temperatureMinTime': 1486134000,
+              'temperatureMax': 35.08,
+              'temperatureMaxTime': 1486155600,
+              'apparentTemperatureMin': 17.08,
+              'apparentTemperatureMinTime': 1486188000,
+              'apparentTemperatureMax': 31.41,
+              'apparentTemperatureMaxTime': 1486155600,
+              'dewPoint': 24.62,
+              'humidity': 0.88,
+              'windSpeed': 3.42,
+              'windBearing': 231,
+              'visibility': 5.31,
+              'cloudCover': 0.63,
+              'pressure': 1020.04,
+              'ozone': 319.75
             }
           ]
         }
       }
     }
   },
-  created: function() {
-    let vm = this;
+  created: function () {
+    // let vm = this
 
     /* weatherService.methods.getWeather().then(response => {
-          vm.weather = JSON.parse( response.body );
-        }, response => {
-          console.log('err', response);
-        }); */
+        vm.weather = JSON.parse( response.body );
+      }, response => {
+        console.log('err', response);
+      }) */
   }
 }
 
 </script>
 
-<style lang="stylus" scoped>
+<style lang='stylus' scoped>
   @import '../../node_modules/jeet/styl/index.styl'
   @import '../styles/vars.styl'
 

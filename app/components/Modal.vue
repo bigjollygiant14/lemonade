@@ -1,9 +1,4 @@
 <template lang="pug">
-  //-#modal
-    div I am {{ title }}
-    div {{ showModal }}
-    button(v-on:click='closeModal') Close
-  
   transition(name="modal")
     .modal-mask
       .modal-wrapper
@@ -29,9 +24,9 @@ export default {
     }
   },
   methods: {
-    closeModal: function() {
-      let vm = this;
-      vm.$emit('close');
+    closeModal: function () {
+      let vm = this
+      vm.$emit('close')
     }
   },
   props: {

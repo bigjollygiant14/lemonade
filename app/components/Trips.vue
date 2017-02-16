@@ -85,6 +85,7 @@
 import Modal from './Modal.vue'
 import tripsService from '../services/trips.service.js'
 import dateFilter from '../services/date.filter.js'
+import _ from 'lodash'
 
 export default {
   name: 'trips',
@@ -102,23 +103,23 @@ export default {
     validate: validate,
     dateFilter
   },
-  created: function() {
-    let vm = this;
+  created: function () {
+    let vm = this
 
     if (!vm.$root.$data.myTrips.length) {
-      tripsService.methods.getTrips( '589263e3e7e17c0bec0cfe2b' ).then(response => {
-          for (let i = 0; i < response.body.length; i++) {
-            response.body[i].edit = false;
-            response.body[i].showMore = false;
-          }
+      tripsService.methods.getTrips('589263e3e7e17c0bec0cfe2b').then(response => {
+        for (let i = 0; i < response.body.length; i++) {
+          response.body[i].edit = false
+          response.body[i].showMore = false
+        }
 
-          vm.trips = response.body;
-          vm.$root.$data.myTrips = response.body;
-        }, response => {
-          console.log('err', response);
-        });
+        vm.trips = response.body
+        vm.$root.$data.myTrips = response.body
+      }, response => {
+        console.log('err', response)
+      })
     } else {
-      vm.trips = _.clone(vm.$root.$data.myTrips);
+      vm.trips = _.clone(vm.$root.$data.myTrips)
     }
   },
   data () {
@@ -200,121 +201,122 @@ export default {
   }
 }
 
-function addTrip() {
-  let vm = this,
-      validated = vm.validate(vm.newTrip);
+function addTrip () {
+  let vm = this
+  let validated = vm.validate(vm.newTrip)
 
   if (validated) {
-    let payload = {};
+    let payload = {}
 
     for (let property in vm.newTrip) {
-      payload[property] = vm.newTrip[property].value;
+      payload[property] = vm.newTrip[property].value
     }
 
     tripsService.methods.addTrip(payload).then(response => {
-        console.log('200', response.body);
+      console.log('200', response.body)
 
-        // attach view helpers
-        response.body.edit = false;
-        response.body.showMore = false;
+      // attach view helpers
+      response.body.edit = false
+      response.body.showMore = false
 
-        // update model -- only need to update root since its a shallow clone
-        vm.$root.$data.myTrips.push(response.body);
+      // update model -- only need to update root since its a shallow clone
+      vm.$root.$data.myTrips.push(response.body)
 
-        // clear form
-        vm.newTrip = _.cloneDeep(vm.newTripCopy);
-      }, response => {
-        console.log('err', response);
-      });
+      // clear form
+      vm.newTrip = _.cloneDeep(vm.newTripCopy)
+    }, response => {
+      console.log('err', response)
+    })
 
-    vm.closeModal();
+    vm.closeModal()
   }
 }
 
-function closeModal() {
-  let vm = this;
-  vm.show = false;
-  vm.showDeleteModalBoolean = false;
+function closeModal () {
+  let vm = this
+  vm.show = false
+  vm.showDeleteModalBoolean = false
 }
 
-function deleteTrip() {
-  let vm = this;
+function deleteTrip () {
+  let vm = this
 
   tripsService.methods.deleteTrip(vm.deleteTripObject.id).then(response => {
-      // update model
-      vm.$root.$data.myTrips.splice(vm.deleteTripObject.index, 1);
+    // update model
+    vm.$root.$data.myTrips.splice(vm.deleteTripObject.index, 1)
 
-      // close modal
-      vm.showDeleteModalBoolean = false;
+    // close modal
+    vm.showDeleteModalBoolean = false
 
-      // nullify temporary object
-      vm.deleteTripObject = {
-        id: null,
-        index: null
-      };
-    }, response => {
-      console.log('err', response);
-    });
+    // nullify temporary object
+    vm.deleteTripObject = {
+      id: null,
+      index: null
+    }
+  }, response => {
+    console.log('err', response)
+  })
 }
 
-function editTrip(object) {
-  object.edit = !object.edit ? true : false;
+function editTrip (object) {
+  /* eslint-disable no-unneeded-ternary */
+  // object.edit is not defined until clicked for the first time
+  object.edit = !object.edit ? true : false
+  /* eslint-enable no-unneeded-ternary */
 
-  if (object.edit) object.showMore = true;
+  if (object.edit) object.showMore = true
   // object.showMore = !object.edit ? true : false;
 }
 
-function moreDetails(object) {
-  object.showMore = !object.showMore ? true : false;
+function moreDetails (object) {
+  object.showMore = !object.showMore
 }
 
-function showDeleteModal(id, index) {
-  let vm = this;
+function showDeleteModal (id, index) {
+  let vm = this
 
   vm.deleteTripObject = {
     id: id,
     index: index
-  };
-  vm.showDeleteModalBoolean = true;
+  }
+  vm.showDeleteModalBoolean = true
 }
 
-function updateTrip(object, index) {
-  let vm = this,
-      validated = vm.validate(object),
-      failCopy = _.cloneDeep(object);
+function updateTrip (object, index) {
+  let vm = this
+  let validated = vm.validate(object)
+  let failCopy = _.cloneDeep(object)
 
   if (validated) {
-    let payload = {};
+    let payload = {}
 
     // filter out view and vue applied properties
     for (let property in object) {
       if (property === 'title' || property === 'description' || property === 'notes' || property === 'start_date' || property === 'end_date' || property === '_id') {
-        payload[property] = object[property];
+        payload[property] = object[property]
       }
     }
 
     tripsService.methods.updateTrip(object._id, payload).then(response => {
-        vm.trips[index].edit = false;
-      }, response => {
-        console.log('err', response);
-        vm.trips[index] = failCopy;
-      });
+      vm.trips[index].edit = false
+    }, response => {
+      console.log('err', response)
+      vm.trips[index] = failCopy
+    })
   }
 }
 
-function validate(object) {
-  let vm = this;
-
+function validate (object) {
   for (let field in object) {
     if (object[field].value === '' && object[field].required === true) {
-      object[field].error = true;
-      return false;
+      object[field].error = true
+      return false
     } else if (object[field].error) {
-      object[field].error = false;
+      object[field].error = false
     }
   }
 
-  return true;
+  return true
 }
 </script>
 
