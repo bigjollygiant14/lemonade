@@ -1,16 +1,16 @@
 module.exports = function (value, decimalPlaces) {
-  let num = value.toString(),
-      val;
+  let num = value.toString()
+  let val
 
   decimalPlaces = decimalPlaces && Number(decimalPlaces) !== 0 ? Number(decimalPlaces) : 0
 
   if (decimalPlaces !== 0) {
-    let numArr = num.split('.');
-    val = numArr[0] + '.' + numArr[1].substring(0, Number(decimalPlaces));
+    let numArr = num.split('.')
+    val = numArr[0] + '.' + numArr[1].substring(0, Number(decimalPlaces))
   } else {
-    let numArr = num.split('.');
-    val = numArr[0];
+    let numArr = num.split('.')
+    val = numArr[0]
   }
 
-  return Number(val);
-};
+  return Number(val)
+}

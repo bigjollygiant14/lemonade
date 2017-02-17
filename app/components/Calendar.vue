@@ -28,6 +28,9 @@ export default {
   },
   created () {
     // renderWeeks()
+    /* $(document).ready(function () {
+      console.log('jquery');
+    }) */
   },
   data () {
     return {

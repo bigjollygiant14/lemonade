@@ -1,30 +1,30 @@
-'use strict';
+'use strict'
 
-import Vue from 'vue';
+import Vue from 'vue'
 
 const tripsService = {
   methods: {
-    addTrip(payload) {
-      let promise = Vue.http.post('/api/trips', payload);
+    addTrip (payload) {
+      let promise = Vue.http.post('/api/trips', payload)
 
-      return promise;
+      return promise
     },
-    deleteTrip(id) {
-      let promise = Vue.http.delete('/api/trips/' + id);
+    deleteTrip (id) {
+      let promise = Vue.http.delete('/api/trips/' + id)
 
-      return promise;
+      return promise
     },
-    getTrips(id) {
-      let promise = id ? Vue.http.get('/api/trips/' + id) : Vue.http.get('/api/trips');
+    getTrips (id) {
+      let promise = id ? Vue.http.get('/api/trips/' + id) : Vue.http.get('/api/trips')
 
-      return promise;
+      return promise
     },
-    updateTrip(id, payload) {
-      let promise = Vue.http.put('/api/trips/' + id, payload);
+    updateTrip (id, payload) {
+      let promise = Vue.http.put('/api/trips/' + id, payload)
 
-      return promise;
+      return promise
     }
   }
-};
+}
 
-export default tripsService;
+export default tripsService

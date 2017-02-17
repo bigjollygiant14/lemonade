@@ -1,31 +1,31 @@
-'use strict';
+'use strict'
 
-import Vue from 'vue';
+import Vue from 'vue'
 
 const usersService = {
   methods: {
-    addUser(payload) {
-      let promise = Vue.http.post('/api/users', payload);
+    addUser (payload) {
+      let promise = Vue.http.post('/api/users', payload)
 
-      return promise;
+      return promise
     },
-    getUsers(id) {
-      id = id || '589263e3e7e17c0bec0cfe2b';
-      let promise = id ? Vue.http.get('/api/users/' + id) : Vue.http.get('/api/users');
+    getUsers (id) {
+      id = id || '589263e3e7e17c0bec0cfe2b'
+      let promise = id ? Vue.http.get('/api/users/' + id) : Vue.http.get('/api/users')
 
-      return promise;
+      return promise
     },
-    deleteUser(id) {
-      let promise = Vue.http.delete('/api/users/' + id);
+    deleteUser (id) {
+      let promise = Vue.http.delete('/api/users/' + id)
 
-      return promise;
+      return promise
     },
-    updateUser(id, payload) {
-      let promise = Vue.http.put('/api/users/' + id, payload);
+    updateUser (id, payload) {
+      let promise = Vue.http.put('/api/users/' + id, payload)
 
-      return promise;
+      return promise
     }
   }
-};
+}
 
-export default usersService;
+export default usersService

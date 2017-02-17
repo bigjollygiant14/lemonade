@@ -1,15 +1,15 @@
-'use strict';
+'use strict'
 
-import Vue from 'vue';
+import Vue from 'vue'
 
 const weatherService = {
   methods: {
-    getWeather() {
-      let promise = Vue.http.get('/api/weather');
+    getWeather () {
+      let promise = Vue.http.get('/api/weather')
 
-      return promise;
+      return promise
     }
   }
-};
+}
 
-export default weatherService;
+export default weatherService
