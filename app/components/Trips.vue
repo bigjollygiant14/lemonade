@@ -159,38 +159,7 @@ export default {
           error: false
         }
       },
-      newTripCopy: {
-        title: {
-          value: '',
-          required: true,
-          error: false
-        },
-        description: {
-          value: '',
-          required: false,
-          error: false
-        },
-        notes: {
-          value: '',
-          required: false,
-          error: false
-        },
-        start_date: {
-          value: '',
-          required: true,
-          error: false
-        },
-        end_date: {
-          value: '',
-          required: true,
-          error: false
-        },
-        owner_id: {
-          value: '589263e3e7e17c0bec0cfe2b',
-          required: false,
-          error: false
-        }
-      },
+      newTripCopy: _.cloneDeep(this.newTrip),
       tripError: {
         title: false,
         start_date: false,
@@ -326,6 +295,7 @@ function validate (object) {
 
 #trips
   background-color $white
+  // background-color blue
   center($container-width)
   border-radius 0 0 5px 5px
   

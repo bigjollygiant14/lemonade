@@ -20,7 +20,10 @@
   "globals": {
     "document": false,
     "navigator": false,
-    "window": false
+    "window": false,
+    "jQuery": false,
+    "$": false,
+    "jquery": false,
   },
 
   "rules": {

@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-const mongoose = require( 'mongoose' );
+const mongoose = require('mongoose')
 
 let UsersSchema = new mongoose.Schema({
   firstname: String,
@@ -10,6 +10,6 @@ let UsersSchema = new mongoose.Schema({
   admin: { type: Boolean, default: false },
   created: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
-});
+})
 
-module.exports = mongoose.model( 'Users', UsersSchema );
+module.exports = mongoose.model('Users', UsersSchema)

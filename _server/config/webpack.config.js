@@ -1,13 +1,13 @@
-'use strict';
+'use strict'
 
 const path = require('path')
-const webpack = require('webpack');
+const webpack = require('webpack')
 
 const webpackConfig = {
   entry: './app/main.js',
   output: {
     path: path.join(__dirname, '../../public/app'),
-    // publicPath: '/public/app/',
+    publicPath: '/public/app/',
     filename: 'bundle.js'
   },
   module: {
@@ -45,10 +45,10 @@ const webpackConfig = {
       $: 'jquery',
       jquery: 'jquery',
       jQuery: 'jquery'
-    })/*,
+    })/* ,
     new webpack.ProvidePlugin({
       _: 'lodash'
-    })*/
+    }) */
   ]
 }
 

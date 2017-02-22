@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-const mongoose = require( 'mongoose' );
+const mongoose = require('mongoose')
 
 let TripsSchema = new mongoose.Schema({
   start_date: Date,
@@ -11,6 +11,6 @@ let TripsSchema = new mongoose.Schema({
   owner_id: String, // ref to user.id
   created: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
-});
+})
 
-module.exports = mongoose.model( 'Trips', TripsSchema );
+module.exports = mongoose.model('Trips', TripsSchema)
