@@ -1,0 +1,36 @@
+@mixin rb-container-fluid() {
+  width: 100%;
+}
+
+@mixin rb-container() {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px;
+  width: 100%;
+
+  @media only screen and (min-width: $breakpoint-sm) {
+    width: $screen-sm;
+  }
+
+  @media only screen and (min-width: $breakpoint-md) {
+    width: $screen-md;
+  }
+
+  @media only screen and (min-width: $breakpoint-lg) {
+    width: $screen-lg;
+  }
+
+  @media only screen and (min-width: $breakpoint-xl) {
+    width: $screen-xl;
+  }
+}
+
+@mixin row() {
+  margin: 0 -15px;
+  width: 100%;
+}
+
+@mixin column($n) {
+  padding: 0 15px;
+  width: $n / $columns;
+}
