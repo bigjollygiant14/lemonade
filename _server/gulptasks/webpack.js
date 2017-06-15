@@ -5,52 +5,24 @@ const path = require('path')
 
 module.exports = (cb) => {
   let webpackConfig = {
-    entry: './app/main.js',
+    entry: './app/index.js',
+
     output: {
-      path: path.join(__dirname, '../../public/app'),
-      publicPath: '/public/app/',
+      path: path.join(__dirname, '../../docs'),
+      publicPath: '/docs/',
       filename: 'bundle.js'
     },
+
+    resolve: {
+      extensions: ['*', '.js', '.jsx', '.json']
+    },
+
     module: {
       rules: [
-        {
-          test: /\.vue$/,
-          loader: 'vue-loader',
-          options: {
-            loaders: {
-              stylus: 'vue-style-loader!css-loader!stylus-loader'
-            }
-          }
-        },
-        {
-          test: /\.js$/,
-          loader: 'babel-loader',
-          options: {presets: ['es2015']},
-          exclude: /node_modules/
-        },
-        {
-          test: /\.styl$/,
-          loader: 'vue-style-loader!css-loader!stylus-loader',
-          exclude: /node_modules/
-        }
+        {test: /\.js$/, exclude: /(node_modules)/, use: {loader: 'babel-loader'}},
+        {test: /(\.css|\.scss|\.sass)$/, exclude: /(node_modules)/, use: ['style-loader', 'css-loader', 'sass-loader']}
       ]
-    },
-    resolve: {
-      extensions: ['.js', '.vue', '.json'],
-      alias: {
-        'vue$': 'vue/dist/vue.common.js'
-      }
-    },
-    plugins: [
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jquery: 'jquery',
-        jQuery: 'jquery'
-      })/* ,
-      new webpack.ProvidePlugin({
-        _: 'lodash'
-      }) */
-    ]
+    }
   }
 
   return webpack(webpackConfig, function (err, stats) {

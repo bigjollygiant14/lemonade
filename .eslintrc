@@ -2,7 +2,8 @@
   "parserOptions": {
     "ecmaVersion": 7,
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
+      "experimentalObjectRestSpread": true,
+      "jsx": true
     },
     "sourceType": "module"
   },
@@ -14,7 +15,8 @@
 
   "plugins": [
     "standard",
-    "html"
+    "html",
+    "react"
   ],
 
   "globals": {
@@ -23,7 +25,7 @@
     "window": false,
     "jQuery": false,
     "$": false,
-    "jquery": false,
+    "jquery": false
   },
 
   "rules": {
@@ -119,7 +121,7 @@
     "no-unreachable": 2,
     "no-unsafe-finally": 2,
     "no-unsafe-negation": 2,
-    "no-unused-vars": [2, { "vars": "all", "args": "none" }],
+    "no-unused-vars": [1, { "vars": "all", "args": "none" }],
     "no-useless-call": 2,
     "no-useless-computed-key": 2,
     "no-useless-constructor": 2,

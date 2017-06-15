@@ -10,13 +10,13 @@ module.exports = (cb) => {
     script: 'server.js',
     ignore: 'app'
   })
-  .on('start', function () {
-    if (!callbackCalled) {
-      callbackCalled = true
-      cb()
-    }
-  })
-  .on('restart', () => {
-    browserSync.reload()
-  })
+    .on('start', function () {
+      if (!callbackCalled) {
+        callbackCalled = true
+        cb()
+      }
+    })
+    .on('restart', () => {
+      browserSync.reload()
+    })
 }

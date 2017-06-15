@@ -22,5 +22,5 @@ gulp.task('html', require('./_server/gulptasks/html'))
 
 /* Default */
 gulp.task( 'default', ['webpack', 'html', 'browser-sync'], function () {
-  gulp.watch(['app/**/*.vue', 'app/**/*.styl', 'app/**/*.js'], ['webpack:watch']);
+  gulp.watch(['app/**/*.js', 'app/**/*.scss', 'app/**/*.html'], ['webpack:watch']);
 });
