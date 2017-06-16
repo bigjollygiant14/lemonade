@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { render } from 'react-dom'
 
@@ -24,7 +25,10 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 // import App from './components/App'
 import Navigation from './components/navigation/Navigation'
 import LandingPage from './components/landing/LandingPage'
+import NewTransaction from './components/transaction/newTransaction/NewTransactionPage'
 import NotFoundPage from './components/util/NotFoundPage'
+import Foot from './components/foot/Foot'
+/* eslint-enable no-unused-vars */
 
 // Styles
 import './styles/main.scss'
@@ -39,8 +43,11 @@ render(
 
             <Switch>
               <Route exact path="/" component={LandingPage} />
+              <Route exact path="/new" component={NewTransaction} />
               <Route component={NotFoundPage}/>
             </Switch>
+
+            <Foot />
           </div>
         </HashRouter>
       </div>

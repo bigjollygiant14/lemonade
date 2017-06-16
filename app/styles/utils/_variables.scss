@@ -1,5 +1,18 @@
 // Colors
-$gray1: #efefef;
+$gray5: #cccccc;
+
+// $gray5: #efefef;
+$gray3: lighten($gray5, 20%);
+$gray4: lighten($gray5, 10%);
+$gray6: darken($gray5, 10%);
+$gray7: darken($gray5, 20%);
+
+$bluePrimary: #233752;
+$blueAccent: lighten($bluePrimary, 25%);
+$blueDarker: darken($bluePrimary, 5%);
+
+$white: #ffffff;
+$black: #000000;
 
 /* Grid Vars */
 $columns: 12;

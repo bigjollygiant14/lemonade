@@ -1,0 +1,6 @@
+.landing-page {
+  @include rb-container();
+
+  background-color: $white;
+  flex-flow: column;
+}

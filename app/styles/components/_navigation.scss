@@ -1,0 +1,20 @@
+.navigation-page {
+  background-color: $bluePrimary;
+  color: $white;
+}
+
+.navigation-page__header {
+  @include rb-container();
+
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  > div {
+    font-size: 2rem;
+  }
+}
+
+.navigation-page__header--accent {
+  font-size: 1rem;
+}

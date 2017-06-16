@@ -3,6 +3,7 @@
 }
 
 @mixin rb-container() {
+  display: flex;
   margin-left: auto;
   margin-right: auto;
   padding: 0 15px;
