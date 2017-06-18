@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import { Link } from 'react-router-dom'
 /* eslint-enable no-unused-vars */
 
 export class NavigationPage extends React.Component {

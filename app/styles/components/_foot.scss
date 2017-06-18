@@ -1,11 +1,32 @@
 .foot {
   background-color: $blueDarker;
   bottom: 0;
+  color: $white;
   left: 0;
+  height: 70px;
   position: absolute;
   width: 100%;
 }
 
 .foot__container {
   @include rb-container();
+
+  height: 100%;
+}
+
+.foot__a {
+  color: $white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.foot__div {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 100%;
 }

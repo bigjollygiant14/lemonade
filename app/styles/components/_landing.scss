@@ -4,3 +4,10 @@
   background-color: $white;
   flex-flow: column;
 }
+
+.landing-page__header {
+  align-content: center;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+}
