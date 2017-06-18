@@ -2,7 +2,7 @@ import Axios from 'axios'
 import Promise from 'promise-polyfill'
 import localApi from './localApi'
 
-const prod = true
+const prod = false
 
 class api {
   /* static getVideos (quote) {
