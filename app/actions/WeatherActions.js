@@ -2,7 +2,6 @@ import * as types from '../constants/actionTypes'
 import api from '../middleware/api'
 
 export function getWeatherSuccess (weatherInfo) {
-  console.log('weatherInfo', weatherInfo)
   return { type: types.LOAD_WEATHER_SUCCESS, weatherInfo }
 }
 

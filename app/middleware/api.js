@@ -45,6 +45,7 @@ class api {
 
       return weatherPromise
     } else {
+      console.log('Fetching local weather...')
       return localApi.getWeather()
     }
   }

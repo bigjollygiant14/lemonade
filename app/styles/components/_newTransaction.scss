@@ -1,0 +1,5 @@
+.newTransactionPage {
+  @include rb-container();
+  background-color: $white;
+  flex-direction: column;
+}

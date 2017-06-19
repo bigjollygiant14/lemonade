@@ -1,6 +1,4 @@
 // globals
-body {
-  background-color: $gray5;
-  font-family: 'Josefin Sans', sans-serif;
-  margin: 0;
-}
+@import './body';
+@import './buttons';
+@import './forms';

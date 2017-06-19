@@ -1,0 +1,25 @@
+.button {
+  align-items: center;
+  background-color: $bluePrimary;
+  border: 1px solid $blueDarker;
+  color: white;
+  display: flex;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  height: 38px;
+  justify-content: center;
+  min-width: 200px;
+  padding-top: 5px;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $blueAccent;
+    cursor: pointer;
+  }
+}
+
+.button--fixed-width {
+  min-width: 0;
+  max-width: 150px;
+}

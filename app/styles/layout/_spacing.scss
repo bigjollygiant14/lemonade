@@ -1,0 +1,3 @@
+@mixin bump($n) {
+  margin-top: $n + rem;
+}

@@ -10,10 +10,18 @@ export class WeatherPage extends React.Component {
     }
   }
 
+  componentWillReceiveProps (newProps) {
+    if (newProps.weatherInfo !== this.props.weatherInfo) {
+      this.setState({
+        weatherInfo: newProps.weatherInfo
+      })
+    }
+  }
+
   render () {
     return (
       <div className="weather-page">
-        <div className="weather-page__div">87 <span className="weather-page__span">o</span></div>
+        <div className="weather-page__div">Current Temperature: {this.state.weatherInfo.temperature || ''}<sup>o</sup></div>
       </div>
     )
   }

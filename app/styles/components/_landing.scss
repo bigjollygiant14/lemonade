@@ -6,8 +6,9 @@
 }
 
 .landing-page__header {
+  @include bump(1);
+
   align-content: center;
   display: flex;
-  height: 60px;
   justify-content: space-between;
 }
