@@ -2,7 +2,9 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Link } from 'react-router-dom'
+import ioClient from 'socket.io-client'
 // import Websocket from 'react-websocket'
+
 /* eslint-enable no-unused-vars */
 
 export class NavigationPage extends React.Component {
@@ -14,9 +16,22 @@ export class NavigationPage extends React.Component {
     }
   }
 
+  componentDidMount () {
+    // To Do: Change using process.env for dynamic host
+    const bitcoinSocket = ioClient.connect('http://localhost:5000/api/bitcoin')
+    bitcoinSocket.on('priceUpdate', function (data) {
+      // console.log('[Navigation.js socket update data: ', data)
+      // bitcoinSocket.emit('my other event', { my: 'data' })
+
+      this.setState({
+        currentValue: data.response.data.ask
+      })
+    }.bind(this))
+  }
+
   handleData (data) {
     let result = JSON.parse(data)
-    console.log('result', result)
+    // console.log('result', result)
     this.setState({
       currentValue: result.value
     })
