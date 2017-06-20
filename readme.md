@@ -26,6 +26,5 @@
 2. Minification and Maps
 3. Break larger components up
 4. immutable.js
-5. Rimraf to clean docs
 
 **Never push compiled code. Compiled code is for GitHub Pages only**
