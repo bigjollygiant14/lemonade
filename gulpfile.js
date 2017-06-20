@@ -23,6 +23,9 @@ gulp.task('html', require('./_server/gulptasks/html'))
 /* Test */
 gulp.task('test', require('./_server/gulptasks/test'))
 
+/* Coverage */
+gulp.task('coverage', require('./_server/gulptasks/coverage'))
+
 /* Default */
 gulp.task('default', ['test', 'webpack', 'html', 'browser-sync'], () => {
   gulp.watch(['app/**/*.js', 'app/**/*.scss', 'app/**/*.html'], ['test', 'webpack:watch']);

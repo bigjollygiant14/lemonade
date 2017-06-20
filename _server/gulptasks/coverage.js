@@ -11,7 +11,9 @@ module.exports = () => {
         'transformIgnorePatterns': [
           '<rootDir>/dist/', '<rootDir>/node_modules/'
         ],
-        'automock': false
+        'automock': false,
+        'collectCoverage': true,
+        'collectCoverageFrom': ["**/*.{js,jsx}", "!**/node_modules/**", "!**/vendor/**"]
       }
     }))
 }

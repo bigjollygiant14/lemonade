@@ -7,11 +7,12 @@
   * React Router
   * React Redux
   * Redux Thunk
-  * Axios for http
+  * Axios for HTTP Requests
 * Babel (ES6)
+  * Promise Polyfill
 * SASS
 * EsLint (JS)
-* 
+* Unit Testing (Jest and Enzyme)
 
 ## Install
 1. Clone Repo
@@ -20,10 +21,10 @@
 4. Browser will open to localhost:3000
 
 ## To Be Added:
+0. Bitcoin TX
 1. Add Style Livereload
-2. Add Unit Testing Suite (Enzyme, Jest)
-3. Add Coverage (Istanbul)
-4. Minification and Maps
-5. Break larger components up
+2. Minification and Maps
+3. Break larger components up
+4. immutable.js
 
 **Never push compiled code. Compiled code is for GitHub Pages only**
