@@ -17,8 +17,10 @@
 ## Install
 1. Clone Repo
 2. Run `npm install` (or `pnpm install`)
-3. Run `gulp`
+3. Run `gulp` or `npm start`
 4. Browser will open to localhost:3000
+
+_`npm run clean` will clean the docs folder_
 
 ## To Be Added:
 0. Bitcoin TX
