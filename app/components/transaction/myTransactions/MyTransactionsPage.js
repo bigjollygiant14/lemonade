@@ -17,9 +17,11 @@ export class MyTransactionsPage extends React.Component {
         <div className="table__container">
           <table className="table">
             <thead>
-              <th className="table__head__th">Transaction Amount</th>
-              <th className="table__head__th">From Account</th>
-              <th className="table__head__th">On Date</th>
+              <tr>
+                <th className="table__head__th">Transaction Amount</th>
+                <th className="table__head__th">From Account</th>
+                <th className="table__head__th">On Date</th>
+              </tr>
             </thead>
             <tbody>
               <tr>

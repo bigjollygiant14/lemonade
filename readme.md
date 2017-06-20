@@ -23,10 +23,13 @@
 _`npm run clean` will clean the docs folder_
 
 ## To Be Added:
-0. Bitcoin TX
-1. Add Style Livereload
-2. Minification and Maps
-3. Break larger components up
-4. immutable.js
+1. Bitcoin TX
+2. Break larger components up
+3. immutable.js
+4. Build
+  1. Add Style Livereload
+  2. Minification and Maps
+  3. Set node env vars
+  4. Only run tests when js or jsx changes
 
 **Never push compiled code. Compiled code is for GitHub Pages only**

@@ -19,17 +19,7 @@ export class LandingPage extends React.Component {
   }
 
   componentWillMount () {
-    this.props.actions.getWeather().then((response) => {
-      // toastr.clear();
-      // toastr.success('Preferences saved!', 'Success');
-      console.log('success: ', response)
-    })
-      .catch((err) => {
-        /* toastr.options.closeDuration = 5000;
-        toastr.clear();
-        toastr.error('Preferences were not saved due to the following error: ' + err, 'Error'); */
-        console.log('error: ', err)
-      })
+    this.props.actions.getWeather()
   }
 
   componentWillReceiveProps (newProps) {

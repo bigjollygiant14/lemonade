@@ -12,7 +12,7 @@ gulp.task('nodemon', ['webpack', 'html'], require('./_server/gulptasks/nodemon')
 gulp.task('webpack', ['lint'], require('./_server/gulptasks/webpack'))
 
 gulp.task('webpack:watch', ['webpack'], (done) => {
-  done();
+  done()
   bs.reload();
 });
 
@@ -28,5 +28,5 @@ gulp.task('coverage', require('./_server/gulptasks/coverage'))
 
 /* Default */
 gulp.task('default', ['test', 'webpack', 'html', 'browser-sync'], () => {
-  gulp.watch(['app/**/*.js', 'app/**/*.scss', 'app/**/*.html'], ['test', 'webpack:watch']);
-});
+  gulp.watch(['app/**/*.js', 'app/**/*.scss', 'app/**/*.html'], ['test', 'webpack:watch'])
+})

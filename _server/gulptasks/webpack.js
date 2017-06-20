@@ -5,7 +5,9 @@ const path = require('path')
 
 module.exports = (cb) => {
   let webpackConfig = {
-    entry: './app/index.js',
+    entry: [
+      './app/index.js'
+    ],
 
     output: {
       path: path.join(__dirname, '../../docs'),
