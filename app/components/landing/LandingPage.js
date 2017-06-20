@@ -48,7 +48,7 @@ export class LandingPage extends React.Component {
     return (
       <div className="landing-page">
         <div className="landing-page__header">
-          <Link to='/new' className="landing-page__a button" role="button">New Transaction</Link>
+          <Link to="/new" className="landing-page__a button" role="button">New Transaction</Link>
           <Weather weatherInfo={this.state.weatherInfo}/>
         </div>
 
@@ -59,6 +59,7 @@ export class LandingPage extends React.Component {
 }
 
 LandingPage.propTypes = {
+  actions: PropTypes.object.isRequired,
   weatherInfo: PropTypes.object.isRequired
 }
 

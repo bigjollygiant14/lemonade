@@ -12,7 +12,12 @@ export class NewTransactionPage extends React.Component {
       }
     }
 
+    this.generateAddress = this.generateAddress.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
+  }
+
+  generateAddress () {
+    console.log('generating!')
   }
 
   handleInputChange (event) {
@@ -41,24 +46,24 @@ export class NewTransactionPage extends React.Component {
 
   render () {
     return (
-      <div className='newTransactionPage'>
+      <div className="newTransactionPage">
         <h1>New Transaction</h1>
 
-        <form className='form'>
-          <div className='form__form-group form__form-group--first'>
-            <input className='form__input' type='text' name='customerAddress' value={this.state.tx.customerAddress || ''} onChange={this.handleInputChange}/>
-            <label className='form__label'>Customer Address</label>
-            <button className='button button--fixed-width'>New Address</button>
+        <form className="form">
+          <div className="form__form-group form__form-group--first">
+            <input className="form__input" type="text" name="customerAddress" value={this.state.tx.customerAddress || ''} onChange={this.handleInputChange}/>
+            <label className="form__label">Customer Address</label>
+            <button className="button button--fixed-width" onClick={this.generateAddress}>Generate New Address</button>
           </div>
 
-          <div className='form__form-group'>
-            <input className='form__input' type='number' name='amount' value={this.state.tx.amount || 0} onChange={this.handleInputChange}/>
-            <label className='form__label'>Amount</label>
+          <div className="form__form-group">
+            <input className="form__input" type="number" name="amount" value={this.state.tx.amount || 0} onChange={this.handleInputChange}/>
+            <label className="form__label">Amount</label>
           </div>
 
-          <div className='form__form-group'>
-            <button className='button button--fixed-width'>Send Payment</button>
-            <label className='form__label'>Send payment to {this.state.tx.myAddress}</label>
+          <div className="form__form-group">
+            <button className="button button--fixed-width">Send Payment</button>
+            <label className="form__label">Send payment to {this.state.tx.myAddress}</label>
           </div>
         </form>
       </div>
