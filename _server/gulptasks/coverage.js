@@ -13,7 +13,7 @@ module.exports = () => {
         ],
         'automock': false,
         'collectCoverage': true,
-        'collectCoverageFrom': ["**/*.{js,jsx}", "!**/node_modules/**", "!**/vendor/**"]
+        'collectCoverageFrom': ['**/*.{js,jsx}', '!**/node_modules/**', '!**/vendor/**']
       }
     }))
 }
