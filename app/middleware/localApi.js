@@ -1,9 +1,5 @@
 import delay from './delay' // simluate delay in ajax response
 
-/* const videoResponse = {
-  response: 'hi'
-} */
-
 const weatherResponse = {
   response: {
     apparentTemperature: 66.05,
@@ -24,11 +20,39 @@ const createAddressResponse = {
   }
 }
 
+const createTxResponse = {
+  response: {
+    'foo': 'bar'
+  }
+}
+
+const txHistory = {
+  response: {
+    'hidey': 'ho'
+  }
+}
+
 class localApi {
   static createAddress () {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(Object.assign({}, createAddressResponse.response))
+      }, delay)
+    })
+  }
+
+  static createTransaction () {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(Object.assign({}, createTxResponse.response))
+      }, delay)
+    })
+  }
+
+  static getTransactionHistory () {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(Object.assign({}, txHistory.response))
       }, delay)
     })
   }

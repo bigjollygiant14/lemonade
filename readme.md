@@ -40,7 +40,7 @@ From the new transaction page, you can enter an address, or generate a new addre
 Lastly, since the APIs are rate limited on the free tier, I collected sample JSON for every outside service, and return sample data instead of hitting the real API.
 
 ### Sample New Transaction Workflow
-Create Address -> Generate transaction (tx) skeleton -> send tx skeleton in transaction -> Check my transactions to wait for confirmed tx in Sam's transactions -> Profit
+Create Address -> Generate transaction (tx) skeleton -> send tx skeleton in transaction -> Check tx's in Sam's transactions -> Profit
 
 ## To Be Added:
 1. Bitcoin TX

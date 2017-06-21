@@ -5,7 +5,7 @@ const router = express.Router()
 const request = require('request')
 const blockCypherToken = 'dab3cdfb592a4540b03ab9cef27f0f38'
 
-// Sams Wallet Info - Created using the api/newAddress route in postman 
+// Sams Wallet Info - Created using the api/newAddress route in postman
 const myAddress = {
   'private': 'b07844692614f8677f70d917462bbcacaaa3b3a9c350f8d7ada48fe19e2be874',
   'public': '0260435a3b82bd5105224261c5492f8e7e1bd50905e00930bbb775803cf2c97ed7',
@@ -80,8 +80,34 @@ router.post('/api/getTxSkeleton', (req, res) => {
 
   request(payload, function (err, response, body) {
     if (err) return err
-    res.json(body)
+
+    // execute the tx now that we have the body
+    res.json(executeTx(body))
   })
 })
+
+/**
+ * @desc Send TX skeleton to execute
+ * @param body @object - tx
+ * @return tx @object - final transaction
+ */
+function executeTx (txSkeleton) {
+  let options = {
+    host: 'https://api.blockcypher.com/v1/bcy/test',
+    path: '/txs/send'
+  }
+
+  let payload = {
+    url: options.host + options.path + '?token=' + blockCypherToken,
+    method: 'POST',
+    body: txSkeleton
+  }
+
+  request(payload, function (err, response, body) {
+    if (err) return err
+    // res.json(body)
+    return body
+  })
+}
 
 module.exports = router

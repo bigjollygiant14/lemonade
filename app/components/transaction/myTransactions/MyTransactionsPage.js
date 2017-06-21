@@ -1,11 +1,27 @@
 import React from 'react'
+import { PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as txHistoryActions from '../../../actions/TxHistoryActions'
 
 export class MyTransactionsPage extends React.Component {
   constructor (props, context) {
     super(props, context)
 
     this.state = {
-      transactionHistory: {}
+      txHistory: Object.assign({}, props.txHistory)
+    }
+  }
+
+  componentWillMount () {
+    this.props.actions.getTransactionHistory()
+  }
+
+  componentWillReceiveProps (newProps) {
+    if (newProps.txHistory !== this.props.txHistory) {
+      this.setState({
+        txHistory: newProps.txHistory
+      })
     }
   }
 
@@ -43,4 +59,25 @@ export class MyTransactionsPage extends React.Component {
   }
 }
 
-export default MyTransactionsPage
+MyTransactionsPage.propTypes = {
+  actions: PropTypes.object.isRequired,
+  txHistory: PropTypes.object.isRequired
+}
+
+MyTransactionsPage.contextTypes = {
+  router: PropTypes.object
+}
+
+function mapStateToProps (state) {
+  return {
+    txHistory: state.txHistory
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(txHistoryActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyTransactionsPage)

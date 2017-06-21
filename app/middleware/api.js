@@ -5,28 +5,6 @@ import localApi from './localApi'
 const prod = false
 
 class api {
-  /* static getVideos (quote) {
-    if (prod) {
-      let videoPromise = new Promise((resolve, reject) => {
-        console.log('Fetching videos...')
-
-        Axios.get('/api/weather')
-          .then((response) => {
-            console.log('success')
-            videoPromise.resolve(response)
-          })
-          .catch((error) => {
-            console.log('error')
-            videoPromise.reject(error)
-          })
-      })
-
-      return videoPromise
-    } else {
-      return localApi.getVideos()
-    }
-  } */
-
   static getWeather () {
     if (prod) {
       let weatherPromise = new Promise((resolve, reject) => {
@@ -50,6 +28,29 @@ class api {
     }
   }
 
+  static getTransactionHistory () {
+    if (prod) {
+      let txPromise = new Promise((resolve, reject) => {
+        console.log('Fetching transaction history...')
+
+        Axios.get('/api/myTransactions')
+          .then((response) => {
+            console.log('success', response)
+            resolve(JSON.parse(response.data))
+          })
+          .catch((error) => {
+            console.log('error: ', error)
+            reject(error)
+          })
+      })
+
+      return txPromise
+    } else {
+      console.log('Fetching local transaction history...')
+      return localApi.getTransactionHistory()
+    }
+  }
+
   static createAddress () {
     if (prod) {
       let addressPromise = new Promise((resolve, reject) => {
@@ -70,6 +71,29 @@ class api {
     } else {
       console.log('Fetching local address...')
       return localApi.createAddress()
+    }
+  }
+
+  static createTransaction () {
+    if (prod) {
+      let txPromise = new Promise((resolve, reject) => {
+        console.log('Creating transaction...')
+
+        Axios.post('/api/getTxSkeleton')
+          .then((response) => {
+            console.log('success', response)
+            resolve(JSON.parse(response.data))
+          })
+          .catch((error) => {
+            console.log('error: ', error)
+            reject(error)
+          })
+      })
+
+      return txPromise
+    } else {
+      console.log('Fetching local address...')
+      return localApi.createTransaction()
     }
   }
 }

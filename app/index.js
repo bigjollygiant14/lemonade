@@ -8,15 +8,17 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import thunk from 'redux-thunk'
 
-import videoData from './reducers/videoReducer'
-import weatherInfo from './reducers/weatherReducer'
 import customerAddress from './reducers/addressReducer'
+import txHistory from './reducers/txHistoryReducer'
+import txSkeleton from './reducers/transactionReducer'
+import weatherInfo from './reducers/weatherReducer'
 import initialState from './reducers/initialState'
 const store = createStore(
   combineReducers({
-    videoData,
-    weatherInfo,
     customerAddress,
+    txHistory,
+    txSkeleton,
+    weatherInfo,
     routing: routerReducer
   }),
   initialState,

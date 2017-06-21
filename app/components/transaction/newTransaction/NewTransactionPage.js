@@ -32,20 +32,21 @@ export class NewTransactionPage extends React.Component {
 
   handleInputChange (event) {
     let target = event.target
-    let newTx = Object.assign({}, this.state.tx)
+    let customerAddress = Object.assign({}, this.state.customerAddress)
 
     switch (target.type) {
       case 'number':
-        newTx[target.name] = Number(target.value)
+        this.setState({
+          amount: Number(target.value)
+        })
         break
       default:
-        newTx[target.name] = target.value
+        customerAddress[target.name] = target.value
+        this.setState({
+          customerAddress: customerAddress
+        })
         break
     }
-
-    this.setState({
-      tx: newTx
-    })
   }
 
   submitPayment (event) {
@@ -56,14 +57,14 @@ export class NewTransactionPage extends React.Component {
 
   render () {
     console.log('render', this.state)
-    console.log('render', this.props)
+
     return (
       <div className="newTransactionPage">
         <h1>New Transaction</h1>
 
         <form className="form">
           <div className="form__form-group form__form-group--first">
-            <input className="form__input" type="text" name="customerAddress" value={this.state.customerAddress.address || ''} onChange={this.handleInputChange}/>
+            <input className="form__input" type="text" name="address" value={this.state.customerAddress.address || ''} onChange={this.handleInputChange}/>
             <label className="form__label">Customer Address</label>
             <button className="button button--fixed-width" onClick={this.generateAddress}>Generate New Address</button>
           </div>
@@ -105,5 +106,3 @@ function mapDispatchToProps (dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewTransactionPage)
-
-// export default NewTransactionPage
