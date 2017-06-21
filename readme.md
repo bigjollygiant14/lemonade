@@ -41,6 +41,13 @@ Lastly, since the APIs are rate limited on the free tier, I collected sample JSO
 
 ### Sample New Transaction Workflow
 Create Address -> Generate transaction (tx) skeleton -> send tx skeleton in transaction -> Check tx's in Sam's transactions -> Profit
+Faucet to add funds - `https://api.blockcypher.com/v1/bcy/test/faucet?token=$YOUR_TOKEN`
+
+Creating a transaction in a test environment requires four steps
+1. Create test address
+2. Add funds to the test address
+3. Create transaction skeleton with address + test fund - If you have no funds in test customer address, the skeleton fails because you pass a transaction value
+4. Send the transaction skeleton to /txs/send to test the functionality
 
 ## To Be Added:
 1. Bitcoin TX

@@ -45,6 +45,13 @@ router.post('/api/newAddress', (req, res) => {
   })
 })
 
+/** 
+ * Creating a transaction in a test environment requires four steps
+ * 1) Create test address
+ * 2) Add funds to the test address
+ * 3) Create transaction skeleton with address + test fund - If you have no funds in test customer address, the skeleton fails because you pass a transaction value
+ * 4) Send the transaction skeleton to /txs/send to test the functionality
+ */
 /**
  * @desc Hitting this route creates a transaction skeleton
  * @param req.body - req.body (Object) - request object

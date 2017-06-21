@@ -1,6 +1,10 @@
 .navigation-page {
   background-color: $bluePrimary;
   color: $white;
+
+  @media only screen and (max-width: $breakpoint-sm) {
+    height: 50px;
+  }
 }
 
 .navigation-page__header {
@@ -12,6 +16,16 @@
 
   > div {
     font-size: 2rem;
+  }
+
+  @media only screen and (max-width: $breakpoint-sm) {
+    > div {
+      font-size: 0.9rem;
+    }
+
+    > h1 {
+      margin: 10px 0;
+    }
   }
 }
 
