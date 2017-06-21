@@ -1,23 +1,33 @@
 import React from 'react'
+import { PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as addressActions from '../../../actions/AddressActions'
 
 export class NewTransactionPage extends React.Component {
   constructor (props, context) {
     super(props, context)
 
     this.state = {
-      tx: {
-        myAddress: '12',
-        customerAddress: '44',
-        amount: 20
-      }
+      customerAddress: Object.assign({}, props.customerAddress),
+      amount: 20
     }
 
     this.generateAddress = this.generateAddress.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
-  generateAddress () {
-    console.log('generating!')
+  componentWillReceiveProps (newProps) {
+    if (newProps.customerAddress !== this.props.customerAddress) {
+      this.setState({
+        customerAddress: newProps.customerAddress
+      })
+    }
+  }
+
+  generateAddress (event) {
+    event.preventDefault()
+    this.props.actions.createCustomerAddress()
   }
 
   handleInputChange (event) {
@@ -45,25 +55,27 @@ export class NewTransactionPage extends React.Component {
   }
 
   render () {
+    console.log('render', this.state)
+    console.log('render', this.props)
     return (
       <div className="newTransactionPage">
         <h1>New Transaction</h1>
 
         <form className="form">
           <div className="form__form-group form__form-group--first">
-            <input className="form__input" type="text" name="customerAddress" value={this.state.tx.customerAddress || ''} onChange={this.handleInputChange}/>
+            <input className="form__input" type="text" name="customerAddress" value={this.state.customerAddress.address || ''} onChange={this.handleInputChange}/>
             <label className="form__label">Customer Address</label>
             <button className="button button--fixed-width" onClick={this.generateAddress}>Generate New Address</button>
           </div>
 
           <div className="form__form-group">
-            <input className="form__input" type="number" name="amount" value={this.state.tx.amount || 0} onChange={this.handleInputChange}/>
+            <input className="form__input" type="number" name="amount" value={this.state.amount || 0} onChange={this.handleInputChange}/>
             <label className="form__label">Amount</label>
           </div>
 
           <div className="form__form-group">
             <button className="button button--fixed-width">Send Payment</button>
-            <label className="form__label">Send payment to {this.state.tx.myAddress}</label>
+            <label className="form__label">Send payment to Silly Sam</label>
           </div>
         </form>
       </div>
@@ -71,4 +83,27 @@ export class NewTransactionPage extends React.Component {
   }
 }
 
-export default NewTransactionPage
+NewTransactionPage.propTypes = {
+  actions: PropTypes.object.isRequired,
+  customerAddress: PropTypes.object.isRequired
+}
+
+NewTransactionPage.contextTypes = {
+  router: PropTypes.object
+}
+
+function mapStateToProps (state) {
+  return {
+    customerAddress: state.customerAddress
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(addressActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewTransactionPage)
+
+// export default NewTransactionPage

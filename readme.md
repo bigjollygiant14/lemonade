@@ -14,6 +14,11 @@
 * EsLint (JS)
 * Unit Testing (Jest and Enzyme)
 
+## Data
+* Bitcoin Price: Bitcoin Average - Gotta know what you\'re getting paid for
+* Weather: Darksky - What if Sam's client asks about the weather??
+* Bitcoin Transaction: Blockcypher - Blockchain.info is having cert issues
+
 ## Install
 1. Clone Repo
 2. Run `npm install` (or `pnpm install`)
@@ -26,7 +31,8 @@ _`npm run clean` will clean the docs folder_
 1. Bitcoin TX
 2. Break larger components up
 3. immutable.js
-4. Build
+4. Mobile Header / Footer
+5. Build
   1. Add Style Livereload
   2. Minification and Maps
   3. Set node env vars

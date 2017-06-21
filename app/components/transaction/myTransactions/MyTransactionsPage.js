@@ -25,14 +25,14 @@ export class MyTransactionsPage extends React.Component {
             </thead>
             <tbody>
               <tr>
-                <td>$20.00</td>
-                <td>1231441413</td>
-                <td>June 18, 2017</td>
+                <td className="table__td">$20.00</td>
+                <td className="table__td">1231441413</td>
+                <td className="table__td">June 18, 2017</td>
               </tr>
               <tr>
-                <td>$15.00</td>
-                <td>1231239875</td>
-                <td>June 19, 2017</td>
+                <td className="table__td">$15.00</td>
+                <td className="table__td">1231239875</td>
+                <td className="table__td">June 19, 2017</td>
               </tr>
             </tbody>
           </table>

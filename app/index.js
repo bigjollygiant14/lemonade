@@ -10,11 +10,13 @@ import thunk from 'redux-thunk'
 
 import videoData from './reducers/videoReducer'
 import weatherInfo from './reducers/weatherReducer'
+import customerAddress from './reducers/addressReducer'
 import initialState from './reducers/initialState'
 const store = createStore(
   combineReducers({
     videoData,
     weatherInfo,
+    customerAddress,
     routing: routerReducer
   }),
   initialState,

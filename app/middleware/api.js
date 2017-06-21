@@ -49,6 +49,29 @@ class api {
       return localApi.getWeather()
     }
   }
+
+  static createAddress () {
+    if (prod) {
+      let addressPromise = new Promise((resolve, reject) => {
+        console.log('Creating address...')
+
+        Axios.post('/api/newAddress')
+          .then((response) => {
+            console.log('success', response)
+            resolve(JSON.parse(response.data))
+          })
+          .catch((error) => {
+            console.log('error: ', error)
+            reject(error)
+          })
+      })
+
+      return addressPromise
+    } else {
+      console.log('Fetching local address...')
+      return localApi.createAddress()
+    }
+  }
 }
 
 export default api

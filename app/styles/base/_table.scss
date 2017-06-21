@@ -6,8 +6,13 @@
   width: 100%;
 }
 
-.table__head__th {
+.table__head__th,
+.table__td {
+  font-size: 1.25rem;
+  padding: 10px 5px;
   text-align: left;
 }
 
-.table__data {}
+.table__td {
+  border-bottom: 1px solid $gray4;
+}
