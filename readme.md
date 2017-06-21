@@ -27,12 +27,27 @@
 
 _`npm run clean` will clean the docs folder_
 
+## Methodology
+### Description
+Blockchain.info, which was recommended, was having cert issues so I used Blockcypher.com's API (https://www.blockcypher.com/dev/bitcoin/#testing). They have a test API that allows you to create addresses and transactions between fake accounts which was useful for this project. For the socket updating Bitcoin exchange rate, I used BitcoinAverage (https://bitcoinaverage.com) for data and Socket.io in my App to update the price in the dashboard.
+
+First, I created the `/api/newAddress` route in my passthrough (since I'm working locally, I had to deal with CORS), then used Postman to create Sam's address. This is saved in the server so as not to expose his address in the client. Next, I created the `/api/myTransactions` route, to display Sam's transactions in the browser. At this point, we have an address for Sam, and a way to display his transaction history.
+
+The rest of the flow can be completed in the browser. The dashboard shows information that will be helpful to Sam: Current weather info since the warmer it is, the more Lemonade Sam will sell; the current exchange rate of Bitcoin to USD; a list of recent transactions; and a button to create new transactions as well as a footer with some links people might ask about.
+
+From the new transaction page, you can enter an address, or generate a new address and specify the amount (in bitcoins) to send to Sam.
+
+Lastly, since the APIs are rate limited on the free tier, I collected sample JSON for every outside service, and return sample data instead of hitting the real API.
+
+### Sample New Transaction Workflow
+Create Address -> Generate transaction (tx) skeleton -> send tx skeleton in transaction -> Check my transactions to wait for confirmed tx in Sam's transactions -> Profit
+
 ## To Be Added:
 1. Bitcoin TX
 2. Break larger components up
 3. immutable.js
 4. Mobile Header / Footer
-5. Build
+5. Build Upgrade
   1. Add Style Livereload
   2. Minification and Maps
   3. Set node env vars
