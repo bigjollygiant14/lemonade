@@ -43,6 +43,9 @@ Lastly, since the APIs are rate limited on the free tier, I collected sample JSO
 Create Address -> Generate transaction (tx) skeleton -> send tx skeleton in transaction -> Check tx's in Sam's transactions -> Profit
 Faucet to add funds - `https://api.blockcypher.com/v1/bcy/test/faucet?token=$YOUR_TOKEN`
 
+### Postman
+To test and update users on the fly, all API routes were created in Postman and tested.
+
 ### Socket
 Usually, we can just use react-websocket to hit the socket directly, but since I'm working locally, I needed to set up a proxy to avoid CORS. So, I'm using socket.io and redux-socket.io to poll BitcoinAverage and save the average to state, so we can use it for transactions and display.
 
