@@ -1,5 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
+import { getFormattedDate } from '../../../util/dateHelper'
 
 export class TransactionRow extends React.Component {
   constructor (props, context) {
@@ -13,13 +14,11 @@ export class TransactionRow extends React.Component {
       transaction
     } = this.props
 
-    console.log('Rendering Row', transaction)
-
     return (
       <tr>
         <td className="table__td">{transaction.value}</td>
         <td className="table__td">{transaction.confirmations}</td>
-        <td className="table__td">{transaction.confirmed}</td>
+        <td className="table__td">{getFormattedDate(transaction.confirmed)}</td>
       </tr>
     )
   }

@@ -43,6 +43,9 @@ Lastly, since the APIs are rate limited on the free tier, I collected sample JSO
 Create Address -> Generate transaction (tx) skeleton -> send tx skeleton in transaction -> Check tx's in Sam's transactions -> Profit
 Faucet to add funds - `https://api.blockcypher.com/v1/bcy/test/faucet?token=$YOUR_TOKEN`
 
+### Socket
+Usually, we can just use react-websocket to hit the socket directly, but since I'm working locally, I needed to set up a proxy to avoid CORS. So, I'm using socket.io and redux-socket.io to poll BitcoinAverage and save the average to state, so we can use it for transactions and display.
+
 Creating a transaction in a test environment requires four steps
 1. Create test address
 2. Add funds to the test address
@@ -50,14 +53,15 @@ Creating a transaction in a test environment requires four steps
 4. Send the transaction skeleton to /txs/send to test the functionality
 
 ## To Be Added:
-1. Bitcoin TX
-2. Break larger components up
-3. immutable.js
-4. Mobile Header / Footer
-5. Build Upgrade
-  * Add Style Livereload
-  * Minification and Maps
-  * Set node env vars
-  * Only run tests when js or jsx changes
+1. Bitcoin TX - Test
+2. redux-socket.io && light styling for up or down in value
+3. Break larger components up
+4. immutable.js
+5. Mobile Header / Footer
+6. Build Upgrade
+    * Add Style Livereload
+    * Minification and Maps
+    * Set node env vars
+    * Only run tests when js or jsx changes
 
 **Never push compiled code. Compiled code is for GitHub Pages only**

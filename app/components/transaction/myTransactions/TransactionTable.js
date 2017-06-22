@@ -22,8 +22,6 @@ export class MyTransactionsPage extends React.Component {
       txHistory
     } = this.props
 
-    console.log('Rendering table', txHistory)
-
     return (
       <div className="table__container">
         <table className="table">

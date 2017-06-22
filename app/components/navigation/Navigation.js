@@ -18,14 +18,14 @@ export class NavigationPage extends React.Component {
 
   componentDidMount () {
     // To Do: Change using process.env for dynamic host
-    const bitcoinSocket = ioClient.connect('http://localhost:5000/api/bitcoin')
+    /* const bitcoinSocket = ioClient.connect('http://localhost:5000/api/bitcoin')
     bitcoinSocket.on('priceUpdate', function (data) {
       // console.log('[Navigation.js socket update data: ', data)
       // bitcoinSocket.emit('my other event', { my: 'data' })
 
       this.setState({
         currentValue: data.response.data.ask
-      })
+      }) */
     }.bind(this))
   }
 

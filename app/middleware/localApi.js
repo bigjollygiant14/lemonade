@@ -11,6 +11,47 @@ const weatherResponse = {
   }
 }
 
+const socketResponse = {
+  response: {
+    "event": "message",
+    "data": {
+      "ask": 2714.54,
+      "bid": 2713.99,
+      "last": 2714.01,
+      "high": 2968.16,
+      "low": 2110.88,
+      "open": {
+          "day": 2648.42,
+          "week": 2433.95,
+          "month": 2136.02
+      },
+      "averages": {
+          "day": 2658.09,
+          "week": 2569.21,
+          "month": 2663.22
+      },
+      "volume": 51063.74,
+      "changes": {
+          "price": {
+              "day": 65.59,
+              "week": 280.06,
+              "month": 577.99
+          },
+          "percent": {
+              "day": 2.48,
+              "week": 11.51,
+              "month": 27.06
+          }
+      },
+      "volume_percent": 67.93,
+      "timestamp": 1498147052,
+      "display_timestamp": "Thu, 22 Jun 2017 15:57:32  +0000",
+      "success": true,
+      "time": "2017-06-22 15:57:34"
+    }
+  }
+}
+
 const createAddressResponse = {
   response: {
     'private': 'c0cb30743a652c5675a2d0c363e63a22de22ca5ff3ea1e7ee08c5adc8679a86b',
