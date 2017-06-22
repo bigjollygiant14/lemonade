@@ -74,14 +74,14 @@ class api {
     }
   }
 
-  static createTransaction () {
+  static createTransaction (payload) {
     if (prod) {
       let txPromise = new Promise((resolve, reject) => {
-        console.log('Creating transaction...')
+        console.log('Creating transaction...', payload)
 
-        Axios.post('/api/getTxSkeleton')
+        Axios.post('/api/getTxSkeleton', payload)
           .then((response) => {
-            console.log('success', response)
+            console.log('Transaction Created: ', response)
             resolve(JSON.parse(response.data))
           })
           .catch((error) => {
@@ -92,7 +92,7 @@ class api {
 
       return txPromise
     } else {
-      console.log('Fetching local address...')
+      console.log('Fetching local transaction...')
       return localApi.createTransaction()
     }
   }

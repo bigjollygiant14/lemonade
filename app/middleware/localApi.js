@@ -28,7 +28,30 @@ const createTxResponse = {
 
 const txHistory = {
   response: {
-    'hidey': 'ho'
+    'address': 'C4ySGV7V8MCoxe6sDwoKP7BNw3jUVxQEJK',
+    'total_received': 100,
+    'total_sent': 0,
+    'balance': 100,
+    'unconfirmed_balance': 0,
+    'final_balance': 100,
+    'n_tx': 1,
+    'unconfirmed_n_tx': 0,
+    'final_n_tx': 1,
+    'txrefs': [
+      {
+        'tx_hash': 'ccc422e2ace79b6df2a9baecc8b2294e8cec731e91e126aef8a5f577c26b3da2',
+        'block_height': 1369855,
+        'tx_input_n': -1,
+        'tx_output_n': 0,
+        'value': 100,
+        'ref_balance': 100,
+        'spent': false,
+        'confirmations': 2,
+        'confirmed': '2017-06-22T00:34:47Z',
+        'double_spend': false
+      }
+    ],
+    'tx_url': 'https://api.blockcypher.com/v1/bcy/test/txs/'
   }
 }
 

@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as addressActions from '../../../actions/AddressActions'
+import * as transactionActions from '../../../actions/TransactionActions'
 
 export class NewTransactionPage extends React.Component {
   constructor (props, context) {
@@ -10,11 +11,12 @@ export class NewTransactionPage extends React.Component {
 
     this.state = {
       customerAddress: Object.assign({}, props.customerAddress),
-      amount: 20
+      value: 20
     }
 
     this.generateAddress = this.generateAddress.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.submitPayment = this.submitPayment.bind(this)
   }
 
   componentWillReceiveProps (newProps) {
@@ -27,7 +29,7 @@ export class NewTransactionPage extends React.Component {
 
   generateAddress (event) {
     event.preventDefault()
-    this.props.actions.createCustomerAddress()
+    this.props.actions.addressActions.createCustomerAddress()
   }
 
   handleInputChange (event) {
@@ -37,7 +39,7 @@ export class NewTransactionPage extends React.Component {
     switch (target.type) {
       case 'number':
         this.setState({
-          amount: Number(target.value)
+          value: Number(target.value)
         })
         break
       default:
@@ -52,12 +54,18 @@ export class NewTransactionPage extends React.Component {
   submitPayment (event) {
     event.preventDefault()
 
+    let payload = {
+      customerAddress: this.state.customerAddress.address,
+      value: this.state.value
+    }
+
+    console.log('Creating TX with payload from UI', payload)
+
     // action to send payload
+    this.props.actions.transactionActions.createTransaction(payload)
   }
 
   render () {
-    console.log('render', this.state)
-
     return (
       <div className="newTransactionPage">
         <h1>New Transaction</h1>
@@ -70,12 +78,12 @@ export class NewTransactionPage extends React.Component {
           </div>
 
           <div className="form__form-group">
-            <input className="form__input" type="number" name="amount" value={this.state.amount || 0} onChange={this.handleInputChange}/>
+            <input className="form__input" type="number" name="value" value={this.state.value || 0} onChange={this.handleInputChange}/>
             <label className="form__label">Amount</label>
           </div>
 
           <div className="form__form-group">
-            <button className="button button--fixed-width">Send Payment</button>
+            <button className="button button--fixed-width" onClick={this.submitPayment}>Send Payment</button>
             <label className="form__label">Send payment to Silly Sam</label>
           </div>
         </form>
@@ -101,7 +109,10 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    actions: bindActionCreators(addressActions, dispatch)
+    actions: {
+      addressActions: bindActionCreators(addressActions, dispatch),
+      transactionActions: bindActionCreators(transactionActions, dispatch)
+    }
   }
 }
 

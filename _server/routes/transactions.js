@@ -10,6 +10,7 @@ const myAddress = {
   'private': 'b07844692614f8677f70d917462bbcacaaa3b3a9c350f8d7ada48fe19e2be874',
   'public': '0260435a3b82bd5105224261c5492f8e7e1bd50905e00930bbb775803cf2c97ed7',
   'address': 'C4ySGV7V8MCoxe6sDwoKP7BNw3jUVxQEJK',
+  // 'address': 'C1XU5V95SHoEtbZpyfqiUQLmYbtU3XhEtC',
   'wif': 'BuF4ittBxYAVaeXCkp36ueKAPakw2FArKzn85qRmqLUXYrHSpXbH'
 }
 
@@ -22,12 +23,11 @@ router.get('/api/myTransactions', (req, res) => {
 
   request(options.host + options.path, function (err, response, body) {
     if (err) return err
-    console.log(body)
     res.json(body)
   })
 })
 
-// Generate a New Address
+// Generate a New Address, then add funds to the account
 router.post('/api/newAddress', (req, res) => {
   let options = {
     host: 'https://api.blockcypher.com/v1/bcy/test',
@@ -42,6 +42,9 @@ router.post('/api/newAddress', (req, res) => {
   request(payload, function (err, response, body) {
     if (err) return err
     res.json(body)
+
+    // add 20 btc to the test address
+    addFunds(body)
   })
 })
 
@@ -50,7 +53,7 @@ router.post('/api/newAddress', (req, res) => {
  * @param req.body - req.body (Object) - request object
  * @returns TX Skeleton
  * {
- *   fromAddress - String - Bitcoin address to take internet monies from
+ *   customerAddress - String - Bitcoin address to take internet monies from
  *   value - Number - Number of internet monies to take
  * }
  */
@@ -66,7 +69,7 @@ router.post('/api/getTxSkeleton', (req, res) => {
     body: JSON.stringify({
       inputs: [
         {
-          addresses: ['' + req.body.fromAddress]
+          addresses: ['' + req.body.customerAddress]
         }
       ],
       outputs: [
@@ -78,13 +81,46 @@ router.post('/api/getTxSkeleton', (req, res) => {
     })
   }
 
+  console.log('Creating Transaction Skeleton with the following payload: ', payload)
+
   request(payload, function (err, response, body) {
     if (err) return err
 
     // execute the tx now that we have the body
+    console.log('Transaction Skeleton Received. Executing... ', body)
     res.json(executeTx(body))
   })
 })
+
+/**
+ * @desc Add 20 btc to test customer address
+ * @param body address body
+ * @return object transaction reference
+ */
+function addFunds (body) {
+  let options = {
+    host: 'https://api.blockcypher.com/v1/bcy/test',
+    path: '/faucet'
+  }
+
+  let newBody = JSON.parse(body)
+  let address = newBody.address
+
+  let payload = {
+    url: options.host + options.path + '?token=' + blockCypherToken,
+    method: 'POST',
+    body: JSON.stringify({
+      address: address,
+      amount: 20
+    })
+  }
+
+  request(payload, function (err, response, body) {
+    if (err) return err
+    // res.json(body)
+    console.log('Funds added to ' + address + ': ', body)
+  })
+}
 
 /**
  * @desc Send TX skeleton to execute
@@ -103,9 +139,12 @@ function executeTx (txSkeleton) {
     body: txSkeleton
   }
 
+  console.log('Sending Transaction with Payload: ', payload)
+
   request(payload, function (err, response, body) {
     if (err) return err
     // res.json(body)
+    console.log('Transaction Completed: ', body)
     return body
   })
 }

@@ -8,13 +8,10 @@ export class NotFoundPage extends React.Component {
   }
 
   render () {
-    /* const {
-      accountData
-    } = this.props */
-
     return (
       <div>
         <h1>You Have Reached The Lost Pages</h1>
+        <p>Only Indy can save you now!</p>
       </div>
     )
   }

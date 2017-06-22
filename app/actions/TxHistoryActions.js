@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes'
 import api from '../middleware/api'
 
 export function getTransactionHistorySuccess (txHistory) {
-  return { type: types.CREATE_TRANSACTION_SUCCESS, txHistory }
+  return { type: types.GET_TRANSACTION_HISTORY_SUCCESS, txHistory }
 }
 
 export function getTransactionHistory () {

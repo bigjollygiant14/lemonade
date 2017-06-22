@@ -31,10 +31,6 @@ export class LandingPage extends React.Component {
   }
 
   render () {
-    /* const {
-      accountData
-    } = this.props */
-
     return (
       <div className="landing-page">
         <div className="landing-page__header">
