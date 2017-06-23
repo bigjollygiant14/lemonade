@@ -2,7 +2,7 @@ import Axios from 'axios'
 import Promise from 'promise-polyfill'
 import localApi from './localApi'
 
-const prod = false
+const prod = true
 
 class api {
   static getWeather () {
@@ -31,15 +31,11 @@ class api {
   static getTransactionHistory () {
     if (prod) {
       let txPromise = new Promise((resolve, reject) => {
-        console.log('Fetching transaction history...')
-
         Axios.get('/api/myTransactions')
           .then((response) => {
-            console.log('success', response)
             resolve(JSON.parse(response.data))
           })
           .catch((error) => {
-            console.log('error: ', error)
             reject(error)
           })
       })
@@ -54,15 +50,11 @@ class api {
   static createAddress () {
     if (prod) {
       let addressPromise = new Promise((resolve, reject) => {
-        console.log('Creating address...')
-
         Axios.post('/api/newAddress')
           .then((response) => {
-            console.log('success', response)
             resolve(JSON.parse(response.data))
           })
           .catch((error) => {
-            console.log('error: ', error)
             reject(error)
           })
       })
@@ -77,15 +69,11 @@ class api {
   static createTransaction (payload) {
     if (prod) {
       let txPromise = new Promise((resolve, reject) => {
-        console.log('Creating transaction...', payload)
-
         Axios.post('/api/getTxSkeleton', payload)
           .then((response) => {
-            console.log('Transaction Created: ', response)
             resolve(JSON.parse(response.data))
           })
           .catch((error) => {
-            console.log('error: ', error)
             reject(error)
           })
       })

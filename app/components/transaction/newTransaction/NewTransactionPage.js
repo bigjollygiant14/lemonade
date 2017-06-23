@@ -79,7 +79,7 @@ export class NewTransactionPage extends React.Component {
 
           <div className="form__form-group">
             <input className="form__input" type="number" name="value" value={this.state.value || 0} onChange={this.handleInputChange}/>
-            <label className="form__label">Amount</label>
+            <label className="form__label">Amount (in bitcoins)</label>
           </div>
 
           <div className="form__form-group">

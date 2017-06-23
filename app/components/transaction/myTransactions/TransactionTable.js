@@ -19,6 +19,7 @@ export class MyTransactionsPage extends React.Component {
 
   render () {
     const {
+      currentBitcoinPrice,
       txHistory
     } = this.props
 
@@ -36,7 +37,7 @@ export class MyTransactionsPage extends React.Component {
             {txHistory.txrefs.length > 0 ? (
               txHistory.txrefs.map((transaction, i) => {
                 return (
-                  <TransactionRow transaction={transaction} key={i}/>
+                  <TransactionRow transaction={transaction} currentBitcoinPrice={currentBitcoinPrice} key={i}/>
                 )
               })
             ) : (
@@ -50,6 +51,7 @@ export class MyTransactionsPage extends React.Component {
 }
 
 MyTransactionsPage.propTypes = {
+  currentBitcoinPrice: PropTypes.object.isRequired,
   txHistory: PropTypes.object.isRequired
 }
 

@@ -8,6 +8,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import thunk from 'redux-thunk'
 
+// Reducers
+import currentBitcoinPrice from './reducers/currentBitcoin'
 import customerAddress from './reducers/addressReducer'
 import txHistory from './reducers/txHistoryReducer'
 import txSkeleton from './reducers/transactionReducer'
@@ -15,6 +17,7 @@ import weatherInfo from './reducers/weatherReducer'
 import initialState from './reducers/initialState'
 const store = createStore(
   combineReducers({
+    currentBitcoinPrice,
     customerAddress,
     txHistory,
     txSkeleton,
@@ -38,6 +41,10 @@ import Foot from './components/foot/Foot'
 
 // Styles
 import './styles/main.scss'
+
+// Start Websocket
+import priceSocket from './middleware/bitcoin'
+priceSocket(store)
 
 render(
   <Provider store={store}>

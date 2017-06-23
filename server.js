@@ -27,7 +27,7 @@ const publicKey = 'MjEzYzIyMWQ3MDc2NDdiZjhhMjgyNmRjNzdmYTUyMjc'
 const secretKey = 'YjY0YTQ3MjM2NDNmNDM4NWFhNmE0NTgxYzJkNzE5MjRlZGIxOGU0NmVlZGI0YTg5YTk2NmFhNTQ0NTE3NjI1Mg'
 const ws = ba.websocketClient(publicKey, secretKey);
 
-/* io
+io
   .of('/api/bitcoin')
   .on('connection', function (socket) {
     // Connecting to the local ticker and printing BTCEUR price data; you can try it with 'global'
@@ -40,6 +40,6 @@ const ws = ba.websocketClient(publicKey, secretKey);
     // socket.on('my other event', function (data) {
       // console.log(data);
     // });
-  }); */
+  });
 
 exports = module.exports = app;

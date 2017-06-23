@@ -10,6 +10,7 @@ export class MyTransactionsPage extends React.Component {
     super(props, context)
 
     this.state = {
+      currentBitcoinPrice: Object.assign({}, props.currentBitcoinPrice),
       txHistory: Object.assign({
         txrefs: []
       }, props.txHistory)
@@ -22,9 +23,12 @@ export class MyTransactionsPage extends React.Component {
 
   componentWillReceiveProps (newProps) {
     if (newProps.txHistory !== this.props.txHistory) {
-      console.log('newProps', newProps)
       this.setState({
         txHistory: newProps.txHistory
+      })
+    } else if (newProps.currentBitcoinPrice !== this.props.currentBitcoinPrice) {
+      this.setState({
+        currentBitcoinPrice: newProps.currentBitcoinPrice
       })
     }
   }
@@ -34,7 +38,7 @@ export class MyTransactionsPage extends React.Component {
       <div className="MyTransactionsPage">
         <h1>My Transactions</h1>
 
-        <TransactionTable txHistory={this.state.txHistory} />
+        <TransactionTable txHistory={this.state.txHistory} currentBitcoinPrice={this.state.currentBitcoinPrice}/>
       </div>
     )
   }
@@ -42,6 +46,7 @@ export class MyTransactionsPage extends React.Component {
 
 MyTransactionsPage.propTypes = {
   actions: PropTypes.object.isRequired,
+  currentBitcoinPrice: PropTypes.object.isRequired,
   txHistory: PropTypes.object.isRequired
 }
 
@@ -51,6 +56,7 @@ MyTransactionsPage.contextTypes = {
 
 function mapStateToProps (state) {
   return {
+    currentBitcoinPrice: state.currentBitcoinPrice,
     txHistory: state.txHistory
   }
 }
