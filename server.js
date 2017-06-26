@@ -30,16 +30,11 @@ const ws = ba.websocketClient(publicKey, secretKey);
 io
   .of('/api/bitcoin')
   .on('connection', function (socket) {
-    // Connecting to the local ticker and printing BTCEUR price data; you can try it with 'global'
+    // Connecting to the local ticker and printing BTCUSD price data;
     ws.connectToTickerWebsocket('local', 'BTCUSD', function (response) {
       console.log(JSON.stringify(response, null, 4));
       socket.emit('priceUpdate', { response });
     });
-
-    // socket.emit('news', { hello: 'world' });
-    // socket.on('my other event', function (data) {
-      // console.log(data);
-    // });
   });
 
 exports = module.exports = app;

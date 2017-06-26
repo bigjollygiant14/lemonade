@@ -8,15 +8,11 @@ class api {
   static getWeather () {
     if (prod) {
       let weatherPromise = new Promise((resolve, reject) => {
-        console.log('Fetching weather...')
-
         Axios.get('/api/weather')
           .then((response) => {
-            console.log('success', response)
             resolve(JSON.parse(response.data))
           })
           .catch((error) => {
-            console.log('error: ', error)
             reject(error)
           })
       })

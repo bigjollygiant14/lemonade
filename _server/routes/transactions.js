@@ -7,12 +7,17 @@ const blockCypherToken = 'dab3cdfb592a4540b03ab9cef27f0f38'
 
 // Sams Wallet Info - Created using the api/newAddress route in postman
 const myAddress = {
-  'private': 'b07844692614f8677f70d917462bbcacaaa3b3a9c350f8d7ada48fe19e2be874',
-  'public': '0260435a3b82bd5105224261c5492f8e7e1bd50905e00930bbb775803cf2c97ed7',
-  'address': 'C4ySGV7V8MCoxe6sDwoKP7BNw3jUVxQEJK',
-  // 'address': 'C1XU5V95SHoEtbZpyfqiUQLmYbtU3XhEtC',
-  'wif': 'BuF4ittBxYAVaeXCkp36ueKAPakw2FArKzn85qRmqLUXYrHSpXbH'
+  'private': 'b1b1c02499aad61dc2a883b46fa227d4056440676d3e4d6451d90196c84ad6c3',
+  'public': '030d8d2063a5b133bfab264c12f226f0fc3406e79e18a310b0a787a47050c02abc',
+  'address': 'C2DpNVTebjiBtYN3PPcFzppPkfKNEhFm2y',
+  'wif': 'BuHSnQWrsty36rL2jLCFt9gagF6W8xvfSWNjfUDRtDSF7GjK35G3'
 }
+
+// Signing
+const bitcoin = require('bitcoinjs-lib')
+const bigi = require('bigi')
+const buffer = require('buffer')
+const keys = new bitcoin.ECPair(bigi.fromHex(myAddress.private))
 
 // Get Sam's Transactions
 router.get('/api/myTransactions', (req, res) => {
@@ -67,27 +72,32 @@ router.post('/api/getTxSkeleton', (req, res) => {
     url: options.host + options.path + '?token=' + blockCypherToken,
     method: 'POST',
     body: JSON.stringify({
-      inputs: [
+      'inputs': [
         {
-          addresses: ['' + req.body.customerAddress]
+          'addresses': [req.body.customerAddress]
         }
       ],
-      outputs: [
+      'outputs': [
         {
-          addresses: [myAddress.address],
-          value: req.body.value
+          'addresses': [myAddress.address],
+          'value': req.body.value
         }
       ]
     })
   }
 
-  console.log('Creating Transaction Skeleton with the following payload: ', payload)
-
   request(payload, function (err, response, body) {
     if (err) return err
 
-    // execute the tx now that we have the body
-    console.log('Transaction Skeleton Received. Executing... ', body)
+    // sign tx - use compressed public key
+    body = JSON.parse(body)
+    body.pubkeys = []
+    body.signatures = body.tosign.map(function (tosign, n) {
+      body.pubkeys.push(keys.getPublicKeyBuffer().toString('hex'));
+      return keys.sign(new buffer.Buffer(tosign, 'hex')).toDER().toString('hex');
+    })
+
+    // THIS SIGNING ISN'T WORKING. GETTING ERROR FROM BLOCKCYPHER API
     res.json(executeTx(body))
   })
 })
@@ -111,10 +121,11 @@ function addFunds (body) {
     method: 'POST',
     body: JSON.stringify({
       address: address,
-      amount: 20
+      amount: 1000000
     })
   }
 
+  console.log('Adding funds to: ', address)
   request(payload, function (err, response, body) {
     if (err) return err
     // res.json(body)
@@ -136,16 +147,15 @@ function executeTx (txSkeleton) {
   let payload = {
     url: options.host + options.path + '?token=' + blockCypherToken,
     method: 'POST',
-    body: txSkeleton
+    body: JSON.stringify(txSkeleton)
   }
 
-  console.log('Sending Transaction with Payload: ', payload)
+  console.log('Sending Final Signed Payment with Payload: ', payload)
 
   request(payload, function (err, response, body) {
     if (err) return err
-    // res.json(body)
     console.log('Transaction Completed: ', body)
-    return body
+    return JSON.parse(body)
   })
 }
 

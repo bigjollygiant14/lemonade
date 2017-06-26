@@ -18,6 +18,8 @@
     "babel-loader": "7.0.0",
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1",
+    "bigi": "^1.4.2",
+    "bitcoinjs-lib": "^3.1.0",
     "body-parser": "1.17.2",
     "browser-sync": "2.18.7",
     "css-loader": "0.28.4",

@@ -11,7 +11,7 @@ export class NewTransactionPage extends React.Component {
 
     this.state = {
       customerAddress: Object.assign({}, props.customerAddress),
-      value: 20
+      value: 40000
     }
 
     this.generateAddress = this.generateAddress.bind(this)

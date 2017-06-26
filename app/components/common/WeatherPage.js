@@ -6,7 +6,9 @@ export class WeatherPage extends React.Component {
     super(props, context)
 
     this.state = {
-      weatherInfo: Object.assign({}, this.props.weatherInfo)
+      weatherInfo: Object.assign({
+        currently: {}
+      }, this.props.weatherInfo)
     }
   }
 
@@ -19,9 +21,10 @@ export class WeatherPage extends React.Component {
   }
 
   render () {
+    console.log('Rendering Weather: ', this.state.weatherInfo)
     return (
       <div className="weather-page">
-        <div className="weather-page__div">Current Temperature: {this.state.weatherInfo.temperature || ''}<sup>o</sup></div>
+        <div className="weather-page__div">Current Temperature: {this.state.weatherInfo.currently.temperature || ''}<sup>o</sup></div>
       </div>
     )
   }
