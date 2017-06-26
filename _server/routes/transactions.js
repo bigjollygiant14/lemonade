@@ -93,8 +93,8 @@ router.post('/api/getTxSkeleton', (req, res) => {
     body = JSON.parse(body)
     body.pubkeys = []
     body.signatures = body.tosign.map(function (tosign, n) {
-      body.pubkeys.push(keys.getPublicKeyBuffer().toString('hex'));
-      return keys.sign(new buffer.Buffer(tosign, 'hex')).toDER().toString('hex');
+      body.pubkeys.push(keys.getPublicKeyBuffer().toString('hex'))
+      return keys.sign(new buffer.Buffer(tosign, 'hex')).toDER().toString('hex')
     })
 
     // THIS SIGNING ISN'T WORKING. GETTING ERROR FROM BLOCKCYPHER API

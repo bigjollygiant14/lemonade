@@ -31,6 +31,7 @@ io
   .of('/api/bitcoin')
   .on('connection', function (socket) {
     // Connecting to the local ticker and printing BTCUSD price data;
+    console.log('Connection starting')
     ws.connectToTickerWebsocket('local', 'BTCUSD', function (response) {
       console.log(JSON.stringify(response, null, 4));
       socket.emit('priceUpdate', { response });
