@@ -22,7 +22,7 @@ app.use( express.static(__dirname + '/docs') );
 server.listen(PORT);
 
 // Bitcoin Pricing
-const ba = require('bitcoinaverage')
+/* const ba = require('bitcoinaverage')
 const publicKey = 'MjEzYzIyMWQ3MDc2NDdiZjhhMjgyNmRjNzdmYTUyMjc'
 const secretKey = 'YjY0YTQ3MjM2NDNmNDM4NWFhNmE0NTgxYzJkNzE5MjRlZGIxOGU0NmVlZGI0YTg5YTk2NmFhNTQ0NTE3NjI1Mg'
 const ws = ba.websocketClient(publicKey, secretKey);
@@ -36,6 +36,6 @@ io
       console.log(JSON.stringify(response, null, 4));
       socket.emit('priceUpdate', { response });
     });
-  });
+  }); */
 
 exports = module.exports = app;

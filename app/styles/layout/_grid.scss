@@ -1,15 +1,24 @@
 @mixin rb-container-fluid() {
+  padding: 0 15px;
   width: 100%;
 }
 
-@mixin rb-container() {
+@mixin rb-grid-container() {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-gap: 1em;
+  padding: 0 15px;
+}
+
+@mixin rb-flex-container() {
   display: flex;
   margin-left: auto;
   margin-right: auto;
   padding: 0 15px;
-  width: 100%;
+}
 
-  @media only screen and (min-width: $breakpoint-sm) {
+  /* @media only screen and (min-width: $breakpoint-sm) {
     width: $screen-sm;
   }
 
@@ -34,4 +43,4 @@
 @mixin column($n) {
   padding: 0 15px;
   width: $n / $columns;
-}
+} */

@@ -36,6 +36,7 @@ import Navigation from './components/navigation/Navigation'
 import LandingPage from './components/landing/LandingPage'
 import NewTransaction from './components/transaction/newTransaction/NewTransactionPage'
 import NotFoundPage from './components/util/NotFoundPage'
+import StyleGuide from './components/util/StyleGuide'
 import Foot from './components/foot/Foot'
 /* eslint-enable no-unused-vars */
 
@@ -57,6 +58,7 @@ render(
             <Switch>
               <Route exact path="/" component={LandingPage} />
               <Route exact path="/new" component={NewTransaction} />
+              <Route exact path="/style-guide" component={StyleGuide} />
               <Route component={NotFoundPage}/>
             </Switch>
 

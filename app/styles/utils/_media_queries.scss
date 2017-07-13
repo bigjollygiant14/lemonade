@@ -1,0 +1,29 @@
+// media queries @mixin
+@mixin MediaQueries($breakpoint) {
+    @media only screen and ($breakpoint) {
+        @content;
+    }
+}
+
+// defs - screen width variables are used in _variables.scss since they are shared with the grid
+$xx-small          : "max-width:" + $xxsmall;
+$x-small           : "max-width:" + $xsmall;
+
+$mobile            : "max-width:" + $small;
+ 
+$header-query      : "max-width:" + 840px;
+$small-tablet      : "max-width:" + 1024px;
+
+$tablet-and-below  : "max-width:" + $med;
+$tablet            : "min-width: " + $small-min + ") and (max-width: " + $med;
+$tablet-and-above  : "min-width:" + $small-min;
+
+// $between-desktop-tablet : "min-width: " + $med + ") and (max-width: " + $med-lg;
+
+$desktop-and-below : "max-width:" + $large;
+$desktop           : "min-width: " + $med-min + ") and (max-width: " + $large;
+$desktop-and-above : "min-width:" + $med-min;
+
+$xlarge-and-below  : "max-width:" + $xlarge;
+$xlarge            : "min-width: " + $large-min + ") and (max-width: " + $xlarge;
+$xlarge-and-above  : "min-width:" + $large-min;

@@ -9,7 +9,7 @@
 }
 
 .foot__container {
-  @include rb-container();
+  @include rb-flex-container();
 
   height: 100%;
 }

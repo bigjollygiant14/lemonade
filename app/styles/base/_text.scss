@@ -1,0 +1,5 @@
+@include MediaQueries($mobile) {
+  h1 {
+    font-size: 20px;
+  }
+}

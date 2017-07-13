@@ -2,12 +2,14 @@ import delay from './delay' // simluate delay in ajax response
 
 const weatherResponse = {
   response: {
-    apparentTemperature: 66.05,
-    humidity: 0.25,
-    icon: 'clear-day',
-    summar: 'Clear',
-    temperature: 72.96,
-    time: 1497812237
+    currently: {
+      apparentTemperature: 66.05,
+      humidity: 0.25,
+      icon: 'clear-day',
+      summar: 'Clear',
+      temperature: 72.96,
+      time: 1497812237
+    }
   }
 }
 

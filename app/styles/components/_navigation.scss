@@ -2,23 +2,23 @@
   background-color: $bluePrimary;
   color: $white;
 
-  @media only screen and (max-width: $breakpoint-sm) {
+  /* @include MediaQueries($mobile) {
     height: 50px;
-  }
+  } */
 }
 
 .navigation-page__header {
-  @include rb-container();
+  @include rb-flex-container();
 
   align-items: center;
-  display: flex;
   justify-content: space-between;
 
   > div {
     font-size: 2rem;
   }
 
-  @media only screen and (max-width: $breakpoint-sm) {
+  // @media only screen and (max-width: $breakpoint-sm) {
+  @include MediaQueries($mobile) {
     > div {
       font-size: 0.9rem;
     }

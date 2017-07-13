@@ -14,10 +14,8 @@ $blueDarker: darken($bluePrimary, 5%);
 $white: #ffffff;
 $black: #000000;
 
-/* Grid Vars */
-$columns: 12;
-
-$breakpoint-sm: 576px;
+// Breakpoints
+/* $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
@@ -25,4 +23,17 @@ $breakpoint-xl: 1200px;
 $screen-sm: 546px;
 $screen-md: 750px;
 $screen-lg: 970px;
-$screen-xl: 1170px;
+$screen-xl: 1170px; */
+
+// screen widths; given 1rem = 16px: (xs, sm, md, lg match bootstrap)
+$xxsmall    : 22.5rem;                 // 22.5x16 = 360px
+$xsmall     : 30rem;                   // 30x16 = 480px
+$small      : 48rem;                   // 48x16 = 768px
+$small-min  : ($small + 0.0625);       // 801px
+$med        : 62rem;                   // 62x16 = 992px
+$med-min    : ($med + 0.0625);         // 993px
+$med-lg     : 62.5rem;                 // 62.5X16 = 1000px
+$med-lg-min : ($med-lg + 0.0625);      // 1001px
+$large      : 75rem;                   // 76x16 = 1200px
+$large-min  : ($large + 0.0625);       // 1201px
+$xlarge     : 100rem;                  // 100x16 = 1600px

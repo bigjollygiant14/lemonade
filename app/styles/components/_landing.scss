@@ -1,8 +1,7 @@
 .landing-page {
-  @include rb-container();
+  @include rb-grid-container();
 
   background-color: $white;
-  flex-flow: column;
 }
 
 .landing-page__header {
