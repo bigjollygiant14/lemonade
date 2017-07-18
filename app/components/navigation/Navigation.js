@@ -14,8 +14,12 @@ export class NavigationPage extends React.Component {
 
     this.state = {
       currentBitcoinPrice: Object.assign({}, props.currentBitcoinPrice),
+      mobileNavOpen: false,
       valueDrop: false // false means price went up or stayed the same, true means price went down
     }
+
+    this.openMobileNav = this.openMobileNav.bind(this)
+    this.renderMobileNav = this.renderMobileNav.bind(this)
   }
 
   componentWillReceiveProps (newProps) {
@@ -27,6 +31,20 @@ export class NavigationPage extends React.Component {
         valueDrop: valueDrop
       })
     }
+  }
+
+  openMobileNav () {
+    this.setState({
+      mobileNavOpen: !this.state.mobileNavOpen
+    })
+  }
+
+  renderMobileNav () {
+    return (
+      <div className="navigation-page__mobile">
+        <p>Mobile Nav</p>
+      </div>
+    )
   }
 
   /* handleData (data) {
@@ -41,9 +59,13 @@ export class NavigationPage extends React.Component {
     return (
       <div className="navigation-page">
         <div className="navigation-page__header">
+          <div className="navigation-page--show-mobile navigation-page--padding" onClick={this.openMobileNav}>
+            <i className="fa fa-bars" aria-hidden="true" />
+          </div>
           <h1><Link to="/" className="navigation-page__a">Lemonade</Link></h1>
           <div>
-            <span className="navigation-page__header--accent">Current Value per Bitcoin:</span>
+            <span className="navigation-page__header--accent navigation-page--hide-mobile">Current Value per Bitcoin:</span>
+            <span className="navigation-page__header--accent navigation-page--show-mobile">USD to BTC:</span>
             <span> ${this.state.currentBitcoinPrice.ask || ''}</span>
           </div>
 

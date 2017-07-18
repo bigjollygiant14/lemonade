@@ -42,6 +42,7 @@ import Foot from './components/foot/Foot'
 
 // Styles
 import './styles/main.scss'
+import 'font-awesome/css/font-awesome.css'
 
 // Start Websocket
 import priceSocket from './middleware/bitcoin'

@@ -22,7 +22,9 @@ module.exports = (cb) => {
     module: {
       rules: [
         {test: /\.js$/, exclude: /(node_modules)/, use: {loader: 'babel-loader'}},
-        {test: /(\.css|\.scss|\.sass)$/, exclude: /(node_modules)/, use: ['style-loader', 'css-loader', 'sass-loader']}
+        {test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?.*$|$)/, use: {loader: 'url-loader?limit=100000'}},
+        // {test: /(\.css|\.scss|\.sass)$/, exclude: /(node_modules)/, use: ['url-loader', 'style-loader', 'css-loader', 'sass-loader']}
+        {test: /(\.css|\.scss|\.sass)$/, use: ['style-loader', 'css-loader', 'sass-loader']}
       ]
     }
   }

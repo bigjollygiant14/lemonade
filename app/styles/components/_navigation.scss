@@ -33,6 +33,30 @@
   font-size: 1rem;
 }
 
+.navigation-page--hide-mobile {
+  @include MediaQueries($mobile) {
+    display: none;
+  }
+
+  @include MediaQueries($tablet-and-above) {
+    display: inline;
+  }
+}
+
+.navigation-page--show-mobile {
+  @include MediaQueries($mobile) {
+    display: inline;
+  }
+
+  @include MediaQueries($tablet-and-above) {
+    display: none;
+  }
+}
+
+.navigation-page--padding {
+  padding: 10px;
+}
+
 .navigation-page__a {
   color: $white;
   text-decoration: none;
