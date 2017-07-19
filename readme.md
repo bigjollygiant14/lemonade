@@ -24,6 +24,7 @@
 1. Clone Repo
 2. Run `npm install` (or `pnpm install`)
 3. Run `npm start` - Runs test suites -> cleans `./docs` -> copies index -> builds -> spins up express server and client server with HMR
+4. Open browser to `localhost:3000`
 
 Other Methods:
 1. `npm run test` - Run test suites
