@@ -8,12 +8,14 @@ import WeatherPage from './WeatherPage'
 function setupMarkup () {
   const props = {
     weatherInfo: {
-      apparentTemperature: 66.05,
-      humidity: 0.25,
-      icon: 'clear-day',
-      summar: 'Clear',
-      temperature: 68,
-      time: 1497812237
+      currently: {
+        apparentTemperature: 66.05,
+        humidity: 0.25,
+        icon: 'clear-day',
+        summar: 'Clear',
+        temperature: 68,
+        time: 1497812237
+      }
     }
   }
 

@@ -19,6 +19,7 @@ app.use( express.static(__dirname + '/docs') );
 
 // Start
 // app.listen(PORT);
+console.log('Express listening on port:', PORT);
 server.listen(PORT);
 
 // Bitcoin Pricing

@@ -21,7 +21,7 @@ export class WeatherPage extends React.Component {
   }
 
   render () {
-    console.log('Rendering Weather: ', this.state.weatherInfo)
+    // console.log('Rendering Weather: ', this.state.weatherInfo)
     return (
       <div className="weather-page">
         <div className="weather-page__div">Current Temperature: {this.state.weatherInfo.currently.temperature || ''}<sup>o</sup></div>

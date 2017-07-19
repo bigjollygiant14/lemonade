@@ -1,8 +1,7 @@
 # React Boilerplate
 
 ## Stack
-* Webpack 2
-* Gulp
+* Webpack 3
 * React
   * React Router
   * React Redux
@@ -24,8 +23,12 @@
 ## Install
 1. Clone Repo
 2. Run `npm install` (or `pnpm install`)
-3. Run `gulp` or `npm start`
-4. Browser will open to localhost:3000
+3. Run `npm start` - Runs test suites -> cleans `./docs` -> copies index -> builds -> spins up express server and client server with HMR
+
+Other Methods:
+1. `npm run test` - Run test suites
+2. `npm run coverage` - Run test suites with coverage report - outputs HTML to ./coverage
+3. `npm run build` - Lints, then transpiles, then bundles all your code
 
 _`npm run clean` will clean the docs folder_
 
@@ -70,5 +73,12 @@ Thanks for checking out my React Lemonade-Stand app!
 
 ## To Be Completed:
 1. Bitcoin TX - Test
+2. Jest - Continuously Run Tests on changed components only
+3. Webpack optimization
+  * Split major blocks of code into chunks
+  * Common Chunks
+  * Production Optimization
+  * Extract CSS into a CSS file (extract-text-webpack-plugin) to avoid FOUAP (Flash of Ugly Ass Page).
+4. Clean up web express code
 
 **Never push compiled code. Compiled code is for GitHub Pages only**
