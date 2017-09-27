@@ -81,5 +81,8 @@ Thanks for checking out my React Lemonade-Stand app!
   * Production Optimization
   * Extract CSS into a CSS file (extract-text-webpack-plugin) to avoid FOUAP (Flash of Ugly Ass Page).
 4. Clean up web express code
+5. Remove promises and replace with async/await
+6. Clean up UI
+7. Change to redux structure to ducks for readability (https://medium.com/@scbarrus/the-ducks-file-structure-for-redux-d63c41b7035c)
 
 **Never push compiled code. Compiled code is for GitHub Pages only**

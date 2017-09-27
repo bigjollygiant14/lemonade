@@ -7,12 +7,13 @@
     "build": "webpack --progress --colors",
     "clean": "rimraf ./docs && mkdir docs",
     "copy": "cp app/index.html docs/index.html",
-    "coverage": "jest --coverage",
+    "coverage": "jest --coverage --colors",
     "dev-client": "webpack-dev-server --inline",
     "dev-server": "nodemon ./server.js",
-    "start": "npm run test && npm run clean && npm run copy && npm run build && npm run start-servers",
+    "start": "npm run test && npm run clean && npm run copy && npm run build && npm run start-servers && npm run test:watch",
     "start-servers": "npm run dev-server & npm run dev-client",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "npm run test -- --watch"
   },
   "author": "bigjollygiant14",
   "license": "MIT",

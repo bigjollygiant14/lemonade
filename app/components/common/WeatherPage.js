@@ -13,6 +13,7 @@ export class WeatherPage extends React.Component {
   }
 
   componentWillReceiveProps (newProps) {
+    // crap
     if (newProps.weatherInfo !== this.props.weatherInfo) {
       this.setState({
         weatherInfo: newProps.weatherInfo
