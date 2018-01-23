@@ -5,7 +5,7 @@ import rootReducer from '../reducers'
 
 /**
  * Logs all actions and states after they are dispatched. */
-/* eslint-ignore-disable no-unused-vars */
+/* eslint-disable no-unused-vars */
 const logger = store => next => action => {
   console.group(action.type)
   console.info('dispatching', action)
@@ -14,7 +14,7 @@ const logger = store => next => action => {
   console.groupEnd(action.type)
   return result
 }
-/* eslint-ignore-enable no-unused-vars */
+/* eslint-enable no-unused-vars */
 
 function configureStoreProd (initialState) {
   const middlewares = [

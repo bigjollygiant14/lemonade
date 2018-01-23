@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes'
-import api from '../middleware/api'
+// import api from '../middleware/api'
 
 /* export function loadCounterSuccess (videoData) {
   return { type: types.LOAD_VIDEOS_SUCCESS, counterData }
@@ -28,14 +28,18 @@ export function decrementCounterSuccess() {
   }
 } */
 
-export function incrementCounter() {
-  dispatch({
-    type: types.INCREMENT_COUNTER
-  })
+export function incrementCounter () {
+  return function (dispatch) {
+    dispatch({
+      type: types.INCREMENT_COUNTER
+    })
+  }
 }
 
-export function decrementCounter() {
-  dispatch({
-    type: types.DECREMENT_COUNTER
-  })
+export function decrementCounter () {
+  return function (dispatch) {
+    dispatch({
+      type: types.DECREMENT_COUNTER
+    })
+  }
 }
