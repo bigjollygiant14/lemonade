@@ -15,7 +15,7 @@ export class LandingPage extends React.Component {
 
     return (
       <div className="landing-page">
-        <h1>You Have Reached The Landing Page</h1>
+        <h1>You Have Reached The Landing Pageroonie Doo</h1>
       </div>
     )
   }
