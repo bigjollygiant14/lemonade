@@ -10,8 +10,9 @@ const webpackConfig = {
 
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/docs/',
-    publicPath : '/'
+    // path: __dirname + '/docs/',
+    path: path.resolve(__dirname, 'docs'),
+    publicPath: '/'
   },
 
   plugins: [
@@ -23,7 +24,7 @@ const webpackConfig = {
     hot: true,
     port: 3000, // Defaults to 8080
     proxy: {
-       '/api': 'http://localhost:5000'
+      '/api': 'http://localhost:5000'
     },
     publicPath: '/'
   },
@@ -67,10 +68,9 @@ const webpackConfig = {
         use: {
           loader: 'url-loader?limit=10000'
         }
-      },
-
+      }
     ]
   }
 }
 
-module.exports = webpackConfig;
+module.exports = webpackConfig

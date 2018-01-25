@@ -1,13 +1,10 @@
-/*
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
+import counter from './counterReducer'
 
-import video from './videoReducer'
-
-const videoData = combineReducers({
-  videoData,
+const rootReducer = combineReducers({
+  counter,
   routing: routerReducer
 })
 
 export default rootReducer
-*/
