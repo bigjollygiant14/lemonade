@@ -1,0 +1,11 @@
+a {
+  color: $purple3;
+
+  &:hover,
+  &:focus {
+    color: $purple2;
+    text-decoration: none;
+    outline: 0;
+    transition: color $transition;
+  }
+}

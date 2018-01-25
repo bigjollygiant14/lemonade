@@ -1,9 +1,9 @@
 @import './utils/*.scss';
-// @import './base/all';
+@import './vendor/*.scss';
+@import './base/*.scss';
 
 .BoilerPlateRoot {
-  @import './vendor/*.scss';
-  @import './layout/*.scss';
+  // @import './layout/*.scss';
   @import '../containers/**/*.scss';
   @import '../components/**/*.scss';
 }

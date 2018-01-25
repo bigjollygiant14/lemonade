@@ -8,10 +8,10 @@ const store = configureStore()
 // Router
 import { HashRouter, Switch, Route } from 'react-router-dom'
 
-// import App from './components/App'
-import Navigation from './components/navigation/Navigation'
 import LandingPage from './containers/landing/LandingPage'
+import HistoryPage from './containers/history/HistoryPage'
 import NotFoundPage from './containers/notFound/NotFoundPage'
+import Navigation from './components/navigation/Navigation'
 
 // Styles
 import './styles/main.scss'
@@ -26,6 +26,7 @@ render(
 
             <Switch>
               <Route exact path="/" component={LandingPage} />
+              <Route exact path="/history" component={HistoryPage} />
               <Route component={NotFoundPage}/>
             </Switch>
           </div>

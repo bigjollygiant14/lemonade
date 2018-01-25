@@ -1,3 +1,33 @@
-.navigation-page {
-  background-color: white;
+.navigation-component {
+  background-color: $gray1;
+  border-bottom: 2px solid $green2;
+  margin-bottom: $margin;
+  padding-bottom: $padding;
+
+  &__div {
+    &--header {
+      h1 {
+        color: $purple3;
+      }
+    }
+
+    &--link-container {
+      display: flex;
+
+      a {
+        margin-right: $margin;
+        padding: $padding/2 $padding;
+
+        // &:first-child {
+        //   padding-left: 0;
+        // }
+
+        &:hover {
+          background-color: $gray2;
+          border-radius: $borderRadius;
+          transition: $defaultTransition;
+        }
+      }
+    }
+  }
 }
