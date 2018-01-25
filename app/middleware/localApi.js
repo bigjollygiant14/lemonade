@@ -6,11 +6,11 @@ const videoResponse = {
 
 class localApi {
   static getVideos () {
-    return new Promise((resolve) => {
+    /* return new Promise((resolve) => {
       setTimeout(() => {
         resolve(Object.assign({}, videoResponse))
       }, delay)
-    })
+    }) */
   }
 }
 

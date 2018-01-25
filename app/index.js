@@ -1,22 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
-
-// Redux
 import { Provider } from 'react-redux'
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { routerReducer } from 'react-router-redux'
-import thunk from 'redux-thunk'
+import configureStore from './store/configureStore'
 
-import videoData from './reducers/videoReducer'
-import initialState from './reducers/initialState'
-const store = createStore(
-  combineReducers({
-    videoData,
-    routing: routerReducer
-  }),
-  initialState,
-  applyMiddleware(thunk)
-)
+const store = configureStore()
 
 // Router
 import { HashRouter, Switch, Route } from 'react-router-dom'
