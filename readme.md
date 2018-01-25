@@ -6,12 +6,11 @@
   * React Router
   * React Redux
   * Redux Thunk
-  * Axios for HTTP Requests
 * Babel (ES6)
   * Promise Polyfill
 * SASS
 * Socket.io
-  * BitcoinAverage
+  * CryptoCompare[https://www.cryptocompare.com/api/#-api-data-price-]
 * EsLint (JS)
 * Unit Testing (Jest and Enzyme)
 
@@ -29,7 +28,7 @@
 Other Methods:
 1. `npm run test` - Run test suites
 2. `npm run coverage` - Run test suites with coverage report - outputs HTML to ./coverage
-3. `npm run build` - Lints, then transpiles, then bundles all your code
+<!-- 3. `npm run build` - Lints, then transpiles, then bundles all your code -->
 
 _`npm run clean` will clean the docs folder_
 
