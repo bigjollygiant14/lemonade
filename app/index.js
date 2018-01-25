@@ -10,8 +10,8 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 
 // import App from './components/App'
 import Navigation from './components/navigation/Navigation'
-import LandingPage from './components/landing/LandingPage'
-import NotFoundPage from './components/util/NotFoundPage'
+import LandingPage from './containers/landing/LandingPage'
+import NotFoundPage from './containers/notFound/NotFoundPage'
 
 // Styles
 import './styles/main.scss'

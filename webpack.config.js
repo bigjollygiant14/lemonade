@@ -50,6 +50,15 @@ const webpackConfig = {
 
       {
         test: /(\.css|\.scss|\.sass)$/,
+        enforce: 'pre',
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'import-glob-loader'
+        }
+      },
+
+      {
+        test: /(\.css|\.scss|\.sass)$/,
         use: [
           {
             loader: 'style-loader'
