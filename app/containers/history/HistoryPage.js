@@ -9,8 +9,9 @@ export class HistoryPage extends React.Component {
 
   render () {
     return (
-      <div>
-        <h1>Price History</h1>
+      <div className="history-page">
+        {/* Each coins high and low */}
+        {/* Graph of histories */}
       </div>
     )
   }

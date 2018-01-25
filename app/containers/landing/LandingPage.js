@@ -27,10 +27,8 @@ export class LandingPage extends React.Component {
   render () {
     return (
       <div className="landing-page">
-        <h1>You Have Reached The Landing Pageroonie DooDoo</h1>
-        {/* <h2>{this.props.counter}</h2>
-        <button onClick={this.increment}>Up</button>
-        <button onClick={this.decrement}>Down</button> */}
+        {/* Welcome Component */}
+        {/* Current Price Component */}
       </div>
     )
   }

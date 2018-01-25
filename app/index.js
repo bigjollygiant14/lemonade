@@ -10,6 +10,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 
 import LandingPage from './containers/landing/LandingPage'
 import HistoryPage from './containers/history/HistoryPage'
+// import PricePage from './containers/history/PricePage' This could be used to show a single currency's info
 import NotFoundPage from './containers/notFound/NotFoundPage'
 import Navigation from './components/navigation/Navigation'
 
@@ -27,6 +28,7 @@ render(
             <Switch>
               <Route exact path="/" component={LandingPage} />
               <Route exact path="/history" component={HistoryPage} />
+              {/* <Route exact path="/price/{:id}" component={PricePage} /> */}
               <Route component={NotFoundPage}/>
             </Switch>
           </div>
