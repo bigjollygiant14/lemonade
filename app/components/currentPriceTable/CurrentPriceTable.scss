@@ -1,0 +1,59 @@
+.current-price-table {
+  &--table {
+    border: 1px solid $midnight;
+    border-radius: $border-radius;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+
+    &--left,
+    &--right {
+      height: 240px;
+      width: 100%;
+    }
+
+    &--left {
+      border-right: 1px solid $midnight;
+      position: relative;
+
+      h2 {
+        bottom: 0;
+        left: $padding;
+        position: absolute;
+      }
+    }
+
+    &--right {
+      display: flex;
+      flex-wrap: wrap;
+
+      &__div {
+        flex-basis: 100%;
+        position: relative;
+
+        h3 {
+          bottom: 0;
+          left: $padding;
+          position: absolute;
+        }
+
+        &:first-child {
+          border-bottom: 1px solid $midnight;
+        }
+      }
+    }
+
+    img {
+      display: block;
+      height: 70px;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      width: 70px;
+    }
+
+    &__span {
+      font-size: 1.4em;
+    }
+  }
+}

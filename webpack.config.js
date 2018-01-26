@@ -74,9 +74,16 @@ const webpackConfig = {
       },
 
       {
-        test: /\.(png|jpg|jpe?g|gif|svg|woff|woff2|ttf|eot)(\?.*$|$)/,
+        test: /\.(png|jpg|jpe?g|gif|woff|woff2|ttf|eot)(\?.*$|$)/,
         use: {
           loader: 'url-loader?limit=10000'
+        }
+      },
+
+      {
+        test: /\.svg(\?.*$|$)/,
+        use: {
+          loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
         }
       }
     ]

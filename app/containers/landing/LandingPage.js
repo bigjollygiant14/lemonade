@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as counterActions from '../../actions/counterActions'
+import CurrentPriceTable from '../../components/currentPriceTable/CurrentPriceTable'
 
 export class LandingPage extends React.Component {
   constructor (props, context) {
@@ -28,7 +29,14 @@ export class LandingPage extends React.Component {
     return (
       <div className="landing-page">
         {/* Welcome Component */}
+        <div className="container">
+          <h2>Nice one, Granny! You have 5 BTC.</h2>
+          <h3>Here's what you can get for 1 BTC:</h3>
+        </div>
         {/* Current Price Component */}
+        <div className="container">
+          <CurrentPriceTable />
+        </div>
       </div>
     )
   }

@@ -12,7 +12,7 @@ import LandingPage from './containers/landing/LandingPage'
 import HistoryPage from './containers/history/HistoryPage'
 // import PricePage from './containers/history/PricePage' This could be used to show a single currency's info
 import NotFoundPage from './containers/notFound/NotFoundPage'
-import Navigation from './components/navigation/Navigation'
+import Navigation from './components/navigation/NavigationComponent'
 
 // Styles
 import './styles/main.scss'
