@@ -10,6 +10,7 @@ let PORT = process.env.PORT || 5000;
 app.use( bodyParser.json() );
 
 // API Routes
+app.use( require('./_server/routes/history') );
 
 // Serve Content from docs
 app.use( express.static(__dirname + '/docs') );

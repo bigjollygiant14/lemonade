@@ -7,6 +7,11 @@ export class HistoryPage extends React.Component {
     this.state = {}
   }
 
+  componentWillMount () {
+    /* List of Prices for last 30 minutes */
+    // get historical data
+  }
+
   render () {
     return (
       <div className="history-page">

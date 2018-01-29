@@ -31,7 +31,6 @@ export class LandingPage extends React.Component {
         {/* Welcome Component */}
         <div className="container">
           <h2>Nice one, Granny! You have 5 BTC.</h2>
-          <h3>Here's what you can get for 1 BTC:</h3>
         </div>
         {/* Current Price Component */}
         <div className="container">
